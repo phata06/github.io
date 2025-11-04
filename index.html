@@ -1,1 +1,199 @@
-index.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndiaye Moustapha - Ingénieur DevOps | Cloud, Automation, Infrastructure</title>
+    <meta name="description" content="Portfolio de Ndiaye Moustapha - Ingénieur DevOps passionné par l'automatisation, le cloud et les infrastructures scalables">
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">VotreNom</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Hero -->
+<section id="accueil" class="hero">
+    <div class="hero-content">
+        <h1>Ndiaye Moustapha</h1>
+        <h2>Ingénieur DevOps & Cloud</h2>
+        <p>🔧 Automation | ☁️ Cloud Native | 🚀 Scalability | 🔒 DevSecOps</p>
+        <div class="hero-technologies">
+            <span>AWS</span>
+            <span>Kubernetes</span>
+            <span>Terraform</span>
+            <span>Docker</span>
+            <span>Jenkins</span>
+        </div>
+        <a href="#projets" class="btn">Voir mes réalisations techniques</a>
+    </div>
+</section>
+
+    <!-- Section Projets -->
+<section id="projets">
+    <h2>Mes Réalisations DevOps</h2>
+    <div class="projets-grid">
+        <!-- Projet 1 - Pipeline CI/CD -->
+        <div class="projet-card">
+            <h3>Pipeline CI/CD Automatisé</h3>
+            <p>Mise en place d'un pipeline Jenkins/GitLab CI pour déploiement continu avec tests automatisés.</p>
+            <div class="technologies">
+                <span>Jenkins</span>
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>GitLab CI</span>
+            </div>
+            <a href="#" class="btn">Voir les détails</a>
+        </div>
+
+        <!-- Projet 2 - Infrastructure Cloud -->
+        <div class="projet-card">
+            <h3>Infrastructure as Code</h3>
+            <p>Déploiement d'infrastructure cloud avec Terraform et gestion de configuration Ansible.</p>
+            <div class="technologies">
+                <span>Terraform</span>
+                <span>Ansible</span>
+                <span>AWS</span>
+                <span>Azure</span>
+            </div>
+            <a href="#" class="btn">Voir les détails</a>
+        </div>
+
+        <!-- Projet 3 - Monitoring -->
+        <div class="projet-card">
+            <h3>Plateforme de Monitoring</h3>
+            <p>Implémentation d'une stack de monitoring avec Prometheus, Grafana et alerting.</p>
+            <div class="technologies">
+                <span>Prometheus</span>
+                <span>Grafana</span>
+                <span>ELK Stack</span>
+                <span>Alertmanager</span>
+            </div>
+            <a href="#" class="btn">Voir les détails</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Section Compétences -->
+<section id="competences">
+    <h2>Compétences Techniques</h2>
+    <div class="competences-grid">
+        <div class="categorie">
+            <h3>Cloud & Infrastructure</h3>
+            <ul>
+                <li>AWS / Azure / GCP</li>
+                <li>Docker & Conteneurisation</li>
+                <li>Kubernetes & Orchestration</li>
+                <li>Terraform & Infrastructure as Code</li>
+                <li>Ansible / Puppet / Chef</li>
+            </ul>
+        </div>
+        <div class="categorie">
+            <h3>CI/CD & Automation</h3>
+            <ul>
+                <li>Jenkins / GitLab CI</li>
+                <li>GitHub Actions</li>
+                <li>ArgoCD / Flux</li>
+                <li>Scripting (Bash, Python)</li>
+                <li>Quality Gates</li>
+            </ul>
+        </div>
+        <div class="categorie">
+            <h3>Monitoring & Sécurité</h3>
+            <ul>
+                <li>Prometheus / Grafana</li>
+                <li>ELK Stack</li>
+                <li>DevSecOps</li>
+                <li>Vault / Secrets Management</li>
+                <li>Sécurité Cloud</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-moi</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>📧 <strong>Email:</strong> votre.email@domain.com</p>
+                <p>📱 <strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+                <p>📍 <strong>Localisation:</strong> Ville, Pays</p>
+                <div class="social-links">
+                    <a href="https://github.com/phata06" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
+                    <a href="CV-VotreNom.pdf" download>Télécharger mon CV</a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Votre nom" required>
+                <input type="email" placeholder="Votre email" required>
+                <textarea placeholder="Votre message" rows="5" required></textarea>
+                <button type="submit">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 [Votre Nom]. Tous droits réservés.</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            Ce code est visible à titre de démonstration. Toute modification ou reproduction est interdite sans autorisation.
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scroll pour la navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les cartes de projet
+        document.querySelectorAll('.projet-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+
+        // Gestion du formulaire de contact (basique)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Je vous répondrai rapidement.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
