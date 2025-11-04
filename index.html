@@ -16,6 +16,7 @@
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#competences">Compétences</a></li>
+                <li><a href="#commande">Commandes utiles</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -120,6 +121,142 @@
     </div>
 </section>
 
+
+    <!-- Section Commandes utiles -->
+    <section id="commande" class="commandes-section">
+        <h2>Commandes Utiles DevOps</h2>
+        <div class="commandes-grid">
+            
+            <!-- Docker -->
+            <div class="commande-categorie">
+                <h3>🐳 Docker</h3>
+                <div class="commande-item">
+                    <code>docker ps -a</code>
+                    <span>Lister tous les conteneurs</span>
+                </div>
+                <div class="commande-item">
+                    <code>docker logs &lt;container_id&gt;</code>
+                    <span>Voir les logs d'un conteneur</span>
+                </div>
+                <div class="commande-item">
+                    <code>docker-compose up -d</code>
+                    <span>Démarrer les services en arrière-plan</span>
+                </div>
+                <div class="commande-item">
+                    <code>docker system prune -a</code>
+                    <span>Nettoyer le système Docker</span>
+                </div>
+            </div>
+    
+            <!-- Kubernetes -->
+            <div class="commande-categorie">
+                <h3>⚙️ Kubernetes</h3>
+                <div class="commande-item">
+                    <code>kubectl get pods -A</code>
+                    <span>Lister tous les pods</span>
+                </div>
+                <div class="commande-item">
+                    <code>kubectl describe pod &lt;pod_name&gt;</code>
+                    <span>Détails d'un pod</span>
+                </div>
+                <div class="commande-item">
+                    <code>kubectl logs &lt;pod_name&gt;</code>
+                    <span>Logs d'un pod</span>
+                </div>
+                <div class="commande-item">
+                    <code>kubectl apply -f deployment.yaml</code>
+                    <span>Appliquer un fichier de déploiement</span>
+                </div>
+            </div>
+    
+            <!-- Git -->
+            <div class="commande-categorie">
+                <h3>📚 Git</h3>
+                <div class="commande-item">
+                    <code>git status</code>
+                    <span>Vérifier l'état du dépôt</span>
+                </div>
+                <div class="commande-item">
+                    <code>git log --oneline</code>
+                    <span>Historique des commits</span>
+                </div>
+                <div class="commande-item">
+                    <code>git branch -a</code>
+                    <span>Lister toutes les branches</span>
+                </div>
+                <div class="commande-item">
+                    <code>git stash</code>
+                    <span>Sauvegarder les modifications temporaires</span>
+                </div>
+            </div>
+    
+            <!-- Linux/System -->
+            <div class="commande-categorie">
+                <h3>🐧 Linux/System</h3>
+                <div class="commande-item">
+                    <code>df -h</code>
+                    <span>Espace disque disponible</span>
+                </div>
+                <div class="commande-item">
+                    <code>top -o %MEM</code>
+                    <span>Processus triés par mémoire</span>
+                </div>
+                <div class="commande-item">
+                    <code>grep -r "pattern" /path/</code>
+                    <span>Rechercher récursivement</span>
+                </div>
+                <div class="commande-item">
+                    <code>journalctl -f</code>
+                    <span>Suivre les logs système</span>
+                </div>
+            </div>
+    
+            <!-- Terraform -->
+            <div class="commande-categorie">
+                <h3>🏗️ Terraform</h3>
+                <div class="commande-item">
+                    <code>terraform init</code>
+                    <span>Initialiser le projet</span>
+                </div>
+                <div class="commande-item">
+                    <code>terraform plan</code>
+                    <span>Voir les changements prévus</span>
+                </div>
+                <div class="commande-item">
+                    <code>terraform apply -auto-approve</code>
+                    <span>Appliquer sans confirmation</span>
+                </div>
+                <div class="commande-item">
+                    <code>terraform destroy</code>
+                    <span>Détruire l'infrastructure</span>
+                </div>
+            </div>
+    
+            <!-- Ansible -->
+            <div class="commande-categorie">
+                <h3>🔄 Ansible</h3>
+                <div class="commande-item">
+                    <code>ansible-playbook playbook.yml</code>
+                    <span>Exécuter un playbook</span>
+                </div>
+                <div class="commande-item">
+                    <code>ansible all -m ping</code>
+                    <span>Tester la connectivité</span>
+                </div>
+                <div class="commande-item">
+                    <code>ansible-doc &lt;module&gt;</code>
+                    <span>Documentation d'un module</span>
+                </div>
+                <div class="commande-item">
+                    <code>ansible-vault encrypt file.yml</code>
+                    <span>Chiffrer un fichier</span>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+
     <!-- Section Contact -->
     <section id="contact">
         <h2>Contactez-moi</h2>
@@ -194,6 +331,14 @@
             alert('Merci pour votre message ! Je vous répondrai rapidement.');
             this.reset();
         });
+
+
+        document.querySelectorAll('.commande-categorie').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+});
     </script>
 </body>
 </html>

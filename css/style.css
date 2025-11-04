@@ -225,3 +225,80 @@ footer {
     font-size: 0.9rem;
     display: inline-block;
 }
+
+
+
+
+/* Section Commandes Utiles */
+.commandes-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.commandes-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+
+.commandes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.commande-categorie {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.commande-categorie h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.commande-item {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.commande-item:hover {
+    transform: translateX(5px);
+}
+
+.commande-item code {
+    display: block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 5px;
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.commande-item span {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .commandes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .commande-categorie {
+        padding: 20px;
+    }
+}
