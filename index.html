@@ -6,6 +6,8 @@
     <title>Ndiaye Moustapha - Ingénieur DevOps | Cloud, Automation, Infrastructure</title>
     <meta name="description" content="Portfolio de Ndiaye Moustapha - Ingénieur DevOps passionné par l'automatisation, le cloud et les infrastructures scalables">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/devops.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -41,45 +43,69 @@
 
     <!-- Section Projets -->
 <section id="projets">
-    <h2>Mes Réalisations DevOps</h2>
-    <div class="projets-grid">
-        <!-- Projet 1 - Pipeline CI/CD -->
-        <div class="projet-card">
-            <h3>Pipeline CI/CD Automatisé</h3>
-            <p>Mise en place d'un pipeline Jenkins/GitLab CI pour déploiement continu avec tests automatisés.</p>
-            <div class="technologies">
-                <span>Jenkins</span>
-                <span>Docker</span>
-                <span>Kubernetes</span>
-                <span>GitLab CI</span>
+    <h2>Automatiser la création d'utilisateur</h2>
+    <div class="projet-automation">
+        <div class="automation-description">
+            <h3>Playbook Ansible pour la création d'utilisateurs</h3>
+            <p>Ce playbook Ansible permet d'automatiser la création d'utilisateurs avec des paramètres de sécurité avancés, incluant l'expiration du compte et les avertissements de changement de mot de passe.</p>
+            
+            <div class="automation-features">
+                <h4>Fonctionnalités principales :</h4>
+                <ul>
+                    <li>Création d'utilisateur avec mot de passe chiffré</li>
+                    <li>Ajout aux groupes appropriés (sudo)</li>
+                    <li>Configuration du shell par défaut</li>
+                    <li>Gestion de l'expiration du compte</li>
+                    <li>Avertissement d'expiration du mot de passe</li>
+                    <li>Utilisation de variables sécurisées</li>
+                </ul>
             </div>
-            <a href="#" class="btn">Voir les détails</a>
         </div>
-
-        <!-- Projet 2 - Infrastructure Cloud -->
-        <div class="projet-card">
-            <h3>Infrastructure as Code</h3>
-            <p>Déploiement d'infrastructure cloud avec Terraform et gestion de configuration Ansible.</p>
-            <div class="technologies">
-                <span>Terraform</span>
-                <span>Ansible</span>
-                <span>AWS</span>
-                <span>Azure</span>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">playbook-create-user.yml</span>
+                <button class="copy-btn" onclick="copyCode()">Copier</button>
             </div>
-            <a href="#" class="btn">Voir les détails</a>
+            <pre><code class="language-yaml">---
+- name: Add a new user
+  hosts: all
+  become: yes
+  vars_files:
+    - vars/secrets.yml
+  tasks:
+    - name: Create a user
+      ansible.builtin.user:
+        name: taph
+        password: "$6$QQ29tdNpOJVj1Q5N$AIWhcL1t6kYWrTjfX9EX9vp1m/YifkXEZeFxYBEDBXUOYfszxHk3tBmrlZbHk4Okwqz5vGiUO67aUv5RttsnK/"
+        groups: sudo
+        shell: /bin/bash
+        create_home: yes
+        expires: 1798851600  # Cette ligne permet de définir une date d'expiration du compte
+        # expires: -1   # Cette ligne commentée permets de désactiver la date d'expiration
+        password_expire_warn: 7  # Avertir 7 jours avant expiration</code></pre>
         </div>
-
-        <!-- Projet 3 - Monitoring -->
-        <div class="projet-card">
-            <h3>Plateforme de Monitoring</h3>
-            <p>Implémentation d'une stack de monitoring avec Prometheus, Grafana et alerting.</p>
-            <div class="technologies">
-                <span>Prometheus</span>
-                <span>Grafana</span>
-                <span>ELK Stack</span>
-                <span>Alertmanager</span>
+        
+        <div class="automation-explanation">
+            <h4>Explication du code :</h4>
+            <div class="explanation-grid">
+                <div class="explanation-item">
+                    <h5>Variables sécurisées</h5>
+                    <p>Le playbook utilise un fichier de variables sécurisé (secrets.yml) pour stocker les informations sensibles.</p>
+                </div>
+                <div class="explanation-item">
+                    <h5>Privilèges étendus</h5>
+                    <p>L'utilisateur est ajouté au groupe sudo pour lui donner des privilèges d'administration.</p>
+                </div>
+                <div class="explanation-item">
+                    <h5>Sécurité renforcée</h5>
+                    <p>Le compte a une date d'expiration configurée et des avertissements pour le changement de mot de passe.</p>
+                </div>
+                <div class="explanation-item">
+                    <h5>Mot de passe chiffré</h5>
+                    <p>Le mot de passe est stocké sous forme de hash sécurisé généré avec l'algorithme SHA-512.</p>
+                </div>
             </div>
-            <a href="#" class="btn">Voir les détails</a>
         </div>
     </div>
 </section>
@@ -134,11 +160,11 @@
                      Voici les principales 👇</p>
                 <div class="commande-item">
                     <code>sudo userdel nom_utilisateur</code>
-                    <span>Cela supprime l’utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</span>
+                    <span>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</span>
                 </div>
                 <div class="commande-item">
                     <code>sudo userdel -r nom_utilisateur</code>
-                    <span>Le -r (ou --remove) supprime également : le répertoire personnel de l’utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</span>
+                    <span>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</span>
                 </div>
                 <div class="commande-item">
                     <code>sudo userdel -f nom_utilisateur</code>
@@ -146,7 +172,7 @@
                 </div>
                 <div class="commande-item">
                     <code>sudo groupdel nom_utilisateur</code>
-                    <span>Si l’utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
+                    <span>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
                 </div>
             </div>
     
@@ -186,6 +212,8 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
     <script>
         // Smooth scroll pour la navigation
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -229,13 +257,34 @@
             this.reset();
         });
 
+        // Fonction pour copier le code
+        function copyCode() {
+            const codeElement = document.querySelector('.language-yaml');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Animation de confirmation
+            const btn = document.querySelector('.copy-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copié !';
+            btn.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
 
         document.querySelectorAll('.commande-categorie').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.6s, transform 0.6s';
             observer.observe(card);
-});
+        });
     </script>
 </body>
 </html>
