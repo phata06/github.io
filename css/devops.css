@@ -113,6 +113,67 @@
     color: #6c757d;
 }
 
+.security-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    border-left: 4px solid #fdcb6e;
+}
+
+.security-note h5 {
+    margin-top: 0;
+    color: #856404;
+}
+
+.code-example {
+    background-color: #2d3436;
+    color: #dfe6e9;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+}
+
+.variables-example {
+    margin-top: 2rem;
+}
+
+.variables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.variable-file {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.variable-file h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+.variable-file pre {
+    margin: 0;
+    background-color: #2d2d2d;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.variable-file code {
+    font-size: 0.8rem;
+}
+
 /* Styles pour la coloration syntaxique avec Prism */
 .token.comment {
     color: #6a9955;
@@ -142,6 +203,10 @@
     }
     
     .explanation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .variables-grid {
         grid-template-columns: 1fr;
     }
 }
