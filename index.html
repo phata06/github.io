@@ -73,11 +73,12 @@
   become: yes
   vars_files:
     - vars/secrets.yml
+    - group_vars/all.yml
   tasks:
     - name: Create a user
       ansible.builtin.user:
-        name: taph
-        password: "$6$QQ29tdNpOJVj1Q5N$AIWhcL1t6kYWrTjfX9EX9vp1m/YifkXEZeFxYBEDBXUOYfszxHk3tBmrlZbHk4Okwqz5vGiUO67aUv5RttsnK/"
+        name: "{{ new_user}}"
+        password: "{{ new_password }}"
         groups: sudo
         shell: /bin/bash
         create_home: yes
