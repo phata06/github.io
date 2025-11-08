@@ -55,6 +55,14 @@
             .python-modules {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
         }
         
         .python-module {
@@ -201,6 +209,19 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
+        
+        /* Style pour le lien CV dans la navigation */
+        .nav-links li a[href*="mnd.html"] {
+            background-color: #1abc9c;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a[href*="mnd.html"]:hover {
+            background-color: #16a085;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -215,6 +236,8 @@
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#commande">Commandes utiles</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <!-- Nouveau lien Mon CV -->
+                <li><a href="mnd.html" target="_blank">Mon CV</a></li>
             </ul>
         </nav>
     </header>
@@ -565,32 +588,35 @@ print("Le résultat de la division est ", division(24, 2))</code></pre>
         // Smooth scroll pour la navigation
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-                
-                // Si c'est une section pliable, on l'ouvre d'abord
-                if (target.classList.contains('collapsible-header')) {
-                    const contentId = targetId + '-content';
-                    const content = document.getElementById(contentId);
+                // Ne pas empêcher le comportement par défaut pour les liens externes (comme mnd.html)
+                if (!this.getAttribute('href').includes('.html') || this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
                     
-                    // Ouvrir la section si elle est fermée
-                    if (!content.classList.contains('active')) {
-                        toggleSection(contentId, target);
-                    }
-                    
-                    // Attendre un peu que l'animation d'ouverture commence puis scroller
-                    setTimeout(() => {
+                    // Si c'est une section pliable, on l'ouvre d'abord
+                    if (target && target.classList.contains('collapsible-header')) {
+                        const contentId = targetId + '-content';
+                        const content = document.getElementById(contentId);
+                        
+                        // Ouvrir la section si elle est fermée
+                        if (!content.classList.contains('active')) {
+                            toggleSection(contentId, target);
+                        }
+                        
+                        // Attendre un peu que l'animation d'ouverture commence puis scroller
+                        setTimeout(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 100);
+                    } else if (target) {
                         target.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    }, 100);
-                } else {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    }
                 }
             });
         });
