@@ -7,6 +7,123 @@
     <meta name="description" content="Portfolio de Ndiaye Moustapha - Ingénieur DevOps passionné par l'automatisation, le cloud et les infrastructures scalables">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        /* Styles additionnels pour la nouvelle section Python */
+        .python-section {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .python-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .python-explanation {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .python-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .python-keywords span {
+            background-color: #e9ecef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .python-modules {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .python-modules {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .python-module {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .python-module h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .code-container {
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .code-header {
+            background-color: #2d3748;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        pre[class*="language-"] {
+            margin: 0;
+            border-radius: 0;
+        }
+        
+        .folder-structure {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .folder-structure .folder {
+            color: #63b3ed;
+        }
+        
+        .folder-structure .file {
+            color: #68d391;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -16,6 +133,7 @@
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#projets">Projets</a></li>
+                <li><a href="#python">Script Python</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#commande">Commandes utiles</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -35,6 +153,7 @@
             <span>Terraform</span>
             <span>Docker</span>
             <span>Jenkins</span>
+            <span>Python</span>
         </div>
         <a href="#projets" class="btn">Voir mes réalisations techniques</a>
     </div>
@@ -65,9 +184,9 @@
         <div class="code-container">
             <div class="code-header">
                 <span class="code-title">playbook-create-user.yml</span>
-                <button class="copy-btn" onclick="copyCode()">Copier</button>
+                <button class="copy-btn" onclick="copyCode('code-ansible')">Copier</button>
             </div>
-            <pre><code class="language-yaml">---
+            <pre id="code-ansible"><code class="language-yaml">---
 - name: Add a new user
   hosts: all
   become: yes
@@ -141,6 +260,106 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
     </div>
 </section>
 
+    <!-- Nouvelle Section Script Python -->
+    <section id="python" class="python-section">
+        <div class="python-content">
+            <h2>Script Python - Modules et Packages</h2>
+            
+            <div class="python-explanation">
+                <h3>Les modules et les packages</h3>
+                <p>En programmation, on a le plus souvent besoin d'utiliser le code écrit par d'autres développeurs pour effectuer des actions ou résoudre des problèmes.</p>
+                <p>C'est là qu'on va utiliser les modules et les packages. L'utilisation des modules et packages nous fait gagner beaucoup de temps.</p>
+                
+                <div class="python-keywords">
+                    <span>module</span>
+                    <span>package</span>
+                    <span>import</span>
+                    <span>from</span>
+                    <span>pip</span>
+                </div>
+                
+                <p>Ceci est un petit rappel des mots clés :</p>
+                <ul>
+                    <li><strong>module</strong>: fichier avec du code Python</li>
+                    <li><strong>package</strong>: dossier contenant les modules</li>
+                    <li><strong>import</strong>: utilisé pour inclure des modules et packages externes dans notre code</li>
+                    <li><strong>from</strong>: importer directement un élément d'un module</li>
+                    <li><strong>pip</strong>: gestionnaire de packages Python qui permet de télécharger, installer et gérer des packages</li>
+                </ul>
+            </div>
+            
+            <div class="python-modules">
+                <div class="python-module">
+                    <h4>Les modules</h4>
+                    <p>On crée notre répertoire de travail nommé DevOps. À l'intérieur on crée un fichier operations.py et y mettre le code suivant :</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">operations.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-module')">Copier</button>
+                        </div>
+                        <pre id="code-module"><code class="language-python">def somme(a, b):
+    return a + b
+
+def division(a, b):
+    return a / b
+
+def soustraction(a, b):
+    return a - b
+
+def multiplication(a, b):
+    return a * b</code></pre>
+                    </div>
+                    
+                    <p>Dans notre répertoire, on crée un fichier main.py et y mettre le code suivant :</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-main')">Copier</button>
+                        </div>
+                        <pre id="code-main"><code class="language-python">from operations import somme, soustraction, division, multiplication
+
+print("Le résultat de la somme est ", somme(2, 6))
+print("Le résultat de la soustraction est ", soustraction(10, 3))
+print("Le résultat de la multiplication est ", multiplication(2, 4))
+print("Le résultat de la division est ", division(24, 2))</code></pre>
+                    </div>
+                    
+                    <p>On a importé les fonctions qui sont dans le module operations.</p>
+                </div>
+                
+                <div class="python-module">
+                    <h4>Les packages</h4>
+                    <p>On va créer des packages. On crée un dossier calculateur dans notre répertoire DevOps. On déplace le fichier operations.py dans le dossier calculateur. On crée un fichier __init__.py (qui peut être vide) dans calculateur.</p>
+                    
+                    <div class="folder-structure">
+                        <div class="folder">DevOps/</div>
+                        <div class="file">├── main.py</div>
+                        <div class="folder">└── calculateur/</div>
+                        <div class="file">    ├── __init__.py</div>
+                        <div class="file">    └── operations.py</div>
+                    </div>
+                    
+                    <p>Dans main.py, il faut maintenant passer par le package calculateur pour faire l'import comme suit :</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py (avec package)</span>
+                            <button class="copy-btn" onclick="copyCode('code-package')">Copier</button>
+                        </div>
+                        <pre id="code-package"><code class="language-python">from calculateur.operations import somme, soustraction, division, multiplication
+
+print("Le résultat de la somme est ", somme(2, 6))
+print("Le résultat de la soustraction est ", soustraction(10, 3))
+print("Le résultat de la multiplication est ", multiplication(2, 4))
+print("Le résultat de la division est ", division(24, 2))</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section Compétences -->
 <section id="competences">
     <h2>Compétences Techniques</h2>
@@ -177,7 +396,6 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
         </div>
     </div>
 </section>
-
 
     <!-- Section Commandes utiles -->
     <section id="commande" class="commandes-section">
@@ -245,6 +463,7 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script>
         // Smooth scroll pour la navigation
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -289,8 +508,8 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
         });
 
         // Fonction pour copier le code
-        function copyCode() {
-            const codeElement = document.querySelector('.language-yaml');
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
             const textArea = document.createElement('textarea');
             textArea.value = codeElement.textContent;
             document.body.appendChild(textArea);
@@ -299,7 +518,7 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
             document.body.removeChild(textArea);
             
             // Animation de confirmation
-            const btn = document.querySelector('.copy-btn');
+            const btn = event.target;
             const originalText = btn.textContent;
             btn.textContent = 'Copié !';
             btn.style.backgroundColor = '#28a745';
@@ -311,6 +530,14 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
         }
 
         document.querySelectorAll('.commande-categorie').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+
+        // Observer les modules Python
+        document.querySelectorAll('.python-module').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.6s, transform 0.6s';
