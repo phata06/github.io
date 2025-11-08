@@ -123,6 +123,84 @@
         .folder-structure .file {
             color: #68d391;
         }
+
+        /* Styles pour les sections pliables */
+        .collapsible-section {
+            margin: 40px 0;
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, #2980b9, #34495e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .collapsible-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .collapsible-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .collapsible-content.active {
+            max-height: 5000px;
+            padding: 30px;
+        }
+
+        .collapsible-header.active .collapsible-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Styles pour les indicateurs de statut */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #2ecc71;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -159,34 +237,43 @@
     </div>
 </section>
 
-    <!-- Section Projets -->
-<section id="projets">
-    <h2>Automatiser la création d'utilisateur</h2>
-    <div class="projet-automation">
-        <div class="automation-description">
-            <h3>Playbook Ansible pour la création d'utilisateurs sécurisée</h3>
-            <p>Ce playbook Ansible permet d'automatiser la création d'utilisateurs avec des paramètres de sécurité avancés, gestion des clés SSH et utilisation de variables externalisées pour une meilleure sécurité.</p>
-            
-            <div class="automation-features">
-                <h4>Fonctionnalités principales :</h4>
-                <ul>
-                    <li>Création d'utilisateur avec variables externalisées</li>
-                    <li>Génération automatique de clé SSH</li>
-                    <li>Ajout aux groupes appropriés (sudo)</li>
-                    <li>Configuration du shell par défaut</li>
-                    <li>Gestion de l'expiration du compte</li>
-                    <li>Avertissement d'expiration du mot de passe</li>
-                    <li>Utilisation de variables sécurisées</li>
-                </ul>
-            </div>
+    <!-- Section Projets (maintenant pliable) -->
+    <div class="collapsible-section">
+        <div id="projets" class="collapsible-header" onclick="toggleSection('projets-content', this)">
+            <h2>Automatiser la création d'utilisateur 
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    Ansible
+                </span>
+            </h2>
+            <span class="collapsible-icon">▼</span>
         </div>
-        
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">playbook-create-user.yml</span>
-                <button class="copy-btn" onclick="copyCode('code-ansible')">Copier</button>
-            </div>
-            <pre id="code-ansible"><code class="language-yaml">---
+        <div id="projets-content" class="collapsible-content">
+            <div class="projet-automation">
+                <div class="automation-description">
+                    <h3>Playbook Ansible pour la création d'utilisateurs sécurisée</h3>
+                    <p>Ce playbook Ansible permet d'automatiser la création d'utilisateurs avec des paramètres de sécurité avancés, gestion des clés SSH et utilisation de variables externalisées pour une meilleure sécurité.</p>
+                    
+                    <div class="automation-features">
+                        <h4>Fonctionnalités principales :</h4>
+                        <ul>
+                            <li>Création d'utilisateur avec variables externalisées</li>
+                            <li>Génération automatique de clé SSH</li>
+                            <li>Ajout aux groupes appropriés (sudo)</li>
+                            <li>Configuration du shell par défaut</li>
+                            <li>Gestion de l'expiration du compte</li>
+                            <li>Avertissement d'expiration du mot de passe</li>
+                            <li>Utilisation de variables sécurisées</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">playbook-create-user.yml</span>
+                        <button class="copy-btn" onclick="copyCode('code-ansible')">Copier</button>
+                    </div>
+                    <pre id="code-ansible"><code class="language-yaml">---
 - name: Add a new user
   hosts: all
   become: yes
@@ -207,98 +294,107 @@
         generate_ssh_key: yes
         ssh_key_bits: 2048
         ssh_key_file: .ssh/id_rsa</code></pre>
-        </div>
-        
-        <div class="automation-explanation">
-            <h4>Explication du code :</h4>
-            <div class="explanation-grid">
-                <div class="explanation-item">
-                    <h5>Variables externalisées</h5>
-                    <p>Utilisation de fichiers de variables séparés (secrets.yml et group_vars/all.yml) pour une meilleure sécurité et modularité.</p>
                 </div>
-                <div class="explanation-item">
-                    <h5>Génération de clé SSH</h5>
-                    <p>Création automatique d'une paire de clés SSH RSA 2048 bits pour l'utilisateur.</p>
-                </div>
-                <div class="explanation-item">
-                    <h5>Mot de passe haché</h5>
-                    <p>La variable <code>new_password</code> doit contenir un mot de passe déjà haché avec l'algorithme SHA-512.</p>
-                </div>
-                <div class="explanation-item">
-                    <h5>Sécurité renforcée</h5>
-                    <p>Expiration du compte configurée et avertissements pour le changement de mot de passe.</p>
-                </div>
-            </div>
-            
-            <div class="security-note">
-                <h5>⚠️ Important : Hachage du mot de passe</h5>
-                <p>Le mot de passe doit être préalablement haché avant d'être utilisé dans le playbook. Voici comment générer un hash SHA-512 :</p>
-                <div class="code-example">
-                    <code>python3 -c "import crypt; print(crypt.crypt('votre_mot_de_passe', crypt.mksalt(crypt.METHOD_SHA512)))"</code>
-                </div>
-                <p>Le résultat doit être stocké dans le fichier <code>vars/secrets.yml</code> :</p>
-                <div class="code-example">
-                    <code>new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code>
-                </div>
-            </div>
-            
-            <div class="variables-example">
-                <h5>Structure des fichiers de variables :</h5>
-                <div class="variables-grid">
-                    <div class="variable-file">
-                        <h6>group_vars/all.yml</h6>
-                        <pre><code class="language-yaml">new_user: "taph"</code></pre>
+                
+                <div class="automation-explanation">
+                    <h4>Explication du code :</h4>
+                    <div class="explanation-grid">
+                        <div class="explanation-item">
+                            <h5>Variables externalisées</h5>
+                            <p>Utilisation de fichiers de variables séparés (secrets.yml et group_vars/all.yml) pour une meilleure sécurité et modularité.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Génération de clé SSH</h5>
+                            <p>Création automatique d'une paire de clés SSH RSA 2048 bits pour l'utilisateur.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Mot de passe haché</h5>
+                            <p>La variable <code>new_password</code> doit contenir un mot de passe déjà haché avec l'algorithme SHA-512.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Sécurité renforcée</h5>
+                            <p>Expiration du compte configurée et avertissements pour le changement de mot de passe.</p>
+                        </div>
                     </div>
-                    <div class="variable-file">
-                        <h6>vars/secrets.yml</h6>
-                        <pre><code class="language-yaml"># Mot de passe haché SHA-512
+                    
+                    <div class="security-note">
+                        <h5>⚠️ Important : Hachage du mot de passe</h5>
+                        <p>Le mot de passe doit être préalablement haché avant d'être utilisé dans le playbook. Voici comment générer un hash SHA-512 :</p>
+                        <div class="code-example">
+                            <code>python3 -c "import crypt; print(crypt.crypt('votre_mot_de_passe', crypt.mksalt(crypt.METHOD_SHA512)))"</code>
+                        </div>
+                        <p>Le résultat doit être stocké dans le fichier <code>vars/secrets.yml</code> :</p>
+                        <div class="code-example">
+                            <code>new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code>
+                        </div>
+                    </div>
+                    
+                    <div class="variables-example">
+                        <h5>Structure des fichiers de variables :</h5>
+                        <div class="variables-grid">
+                            <div class="variable-file">
+                                <h6>group_vars/all.yml</h6>
+                                <pre><code class="language-yaml">new_user: "taph"</code></pre>
+                            </div>
+                            <div class="variable-file">
+                                <h6>vars/secrets.yml</h6>
+                                <pre><code class="language-yaml"># Mot de passe haché SHA-512
 new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-    <!-- Nouvelle Section Script Python -->
-    <section id="python" class="python-section">
-        <div class="python-content">
-            <h2>Script Python - Modules et Packages</h2>
-            
-            <div class="python-explanation">
-                <h3>Les modules et les packages</h3>
-                <p>En programmation, on a le plus souvent besoin d'utiliser le code écrit par d'autres développeurs pour effectuer des actions ou résoudre des problèmes.</p>
-                <p>C'est là qu'on va utiliser les modules et les packages. L'utilisation des modules et packages nous fait gagner beaucoup de temps.</p>
-                
-                <div class="python-keywords">
-                    <span>module</span>
-                    <span>package</span>
-                    <span>import</span>
-                    <span>from</span>
-                    <span>pip</span>
+    <!-- Nouvelle Section Script Python (maintenant pliable) -->
+    <div class="collapsible-section">
+        <div id="python" class="collapsible-header" onclick="toggleSection('python-content', this)">
+            <h2>Script Python - Modules et Packages
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    Développement
+                </span>
+            </h2>
+            <span class="collapsible-icon">▼</span>
+        </div>
+        <div id="python-content" class="collapsible-content">
+            <div class="python-content">
+                <div class="python-explanation">
+                    <h3>Les modules et les packages</h3>
+                    <p>En programmation, on a le plus souvent besoin d'utiliser le code écrit par d'autres développeurs pour effectuer des actions ou résoudre des problèmes.</p>
+                    <p>C'est là qu'on va utiliser les modules et les packages. L'utilisation des modules et packages nous fait gagner beaucoup de temps.</p>
+                    
+                    <div class="python-keywords">
+                        <span>module</span>
+                        <span>package</span>
+                        <span>import</span>
+                        <span>from</span>
+                        <span>pip</span>
+                    </div>
+                    
+                    <p>Ceci est un petit rappel des mots clés :</p>
+                    <ul>
+                        <li><strong>module</strong>: fichier avec du code Python</li>
+                        <li><strong>package</strong>: dossier contenant les modules</li>
+                        <li><strong>import</strong>: utilisé pour inclure des modules et packages externes dans notre code</li>
+                        <li><strong>from</strong>: importer directement un élément d'un module</li>
+                        <li><strong>pip</strong>: gestionnaire de packages Python qui permet de télécharger, installer et gérer des packages</li>
+                    </ul>
                 </div>
                 
-                <p>Ceci est un petit rappel des mots clés :</p>
-                <ul>
-                    <li><strong>module</strong>: fichier avec du code Python</li>
-                    <li><strong>package</strong>: dossier contenant les modules</li>
-                    <li><strong>import</strong>: utilisé pour inclure des modules et packages externes dans notre code</li>
-                    <li><strong>from</strong>: importer directement un élément d'un module</li>
-                    <li><strong>pip</strong>: gestionnaire de packages Python qui permet de télécharger, installer et gérer des packages</li>
-                </ul>
-            </div>
-            
-            <div class="python-modules">
-                <div class="python-module">
-                    <h4>Les modules</h4>
-                    <p>On crée notre répertoire de travail nommé DevOps. À l'intérieur on crée un fichier operations.py et y mettre le code suivant :</p>
-                    
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">operations.py</span>
-                            <button class="copy-btn" onclick="copyCode('code-module')">Copier</button>
-                        </div>
-                        <pre id="code-module"><code class="language-python">def somme(a, b):
+                <div class="python-modules">
+                    <div class="python-module">
+                        <h4>Les modules</h4>
+                        <p>On crée notre répertoire de travail nommé DevOps. À l'intérieur on crée un fichier operations.py et y mettre le code suivant :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">operations.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-module')">Copier</button>
+                            </div>
+                            <pre id="code-module"><code class="language-python">def somme(a, b):
     return a + b
 
 def division(a, b):
@@ -309,56 +405,57 @@ def soustraction(a, b):
 
 def multiplication(a, b):
     return a * b</code></pre>
-                    </div>
-                    
-                    <p>Dans notre répertoire, on crée un fichier main.py et y mettre le code suivant :</p>
-                    
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">main.py</span>
-                            <button class="copy-btn" onclick="copyCode('code-main')">Copier</button>
                         </div>
-                        <pre id="code-main"><code class="language-python">from operations import somme, soustraction, division, multiplication
+                        
+                        <p>Dans notre répertoire, on crée un fichier main.py et y mettre le code suivant :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-main')">Copier</button>
+                            </div>
+                            <pre id="code-main"><code class="language-python">from operations import somme, soustraction, division, multiplication
 
 print("Le résultat de la somme est ", somme(2, 6))
 print("Le résultat de la soustraction est ", soustraction(10, 3))
 print("Le résultat de la multiplication est ", multiplication(2, 4))
 print("Le résultat de la division est ", division(24, 2))</code></pre>
-                    </div>
-                    
-                    <p>On a importé les fonctions qui sont dans le module operations.</p>
-                </div>
-                
-                <div class="python-module">
-                    <h4>Les packages</h4>
-                    <p>On va créer des packages. On crée un dossier calculateur dans notre répertoire DevOps. On déplace le fichier operations.py dans le dossier calculateur. On crée un fichier __init__.py (qui peut être vide) dans calculateur.</p>
-                    
-                    <div class="folder-structure">
-                        <div class="folder">DevOps/</div>
-                        <div class="file">├── main.py</div>
-                        <div class="folder">└── calculateur/</div>
-                        <div class="file">    ├── __init__.py</div>
-                        <div class="file">    └── operations.py</div>
-                    </div>
-                    
-                    <p>Dans main.py, il faut maintenant passer par le package calculateur pour faire l'import comme suit :</p>
-                    
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">main.py (avec package)</span>
-                            <button class="copy-btn" onclick="copyCode('code-package')">Copier</button>
                         </div>
-                        <pre id="code-package"><code class="language-python">from calculateur.operations import somme, soustraction, division, multiplication
+                        
+                        <p>On a importé les fonctions qui sont dans le module operations.</p>
+                    </div>
+                    
+                    <div class="python-module">
+                        <h4>Les packages</h4>
+                        <p>On va créer des packages. On crée un dossier calculateur dans notre répertoire DevOps. On déplace le fichier operations.py dans le dossier calculateur. On crée un fichier __init__.py (qui peut être vide) dans calculateur.</p>
+                        
+                        <div class="folder-structure">
+                            <div class="folder">DevOps/</div>
+                            <div class="file">├── main.py</div>
+                            <div class="folder">└── calculateur/</div>
+                            <div class="file">    ├── __init__.py</div>
+                            <div class="file">    └── operations.py</div>
+                        </div>
+                        
+                        <p>Dans main.py, il faut maintenant passer par le package calculateur pour faire l'import comme suit :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py (avec package)</span>
+                                <button class="copy-btn" onclick="copyCode('code-package')">Copier</button>
+                            </div>
+                            <pre id="code-package"><code class="language-python">from calculateur.operations import somme, soustraction, division, multiplication
 
 print("Le résultat de la somme est ", somme(2, 6))
 print("Le résultat de la soustraction est ", soustraction(10, 3))
 print("Le résultat de la multiplication est ", multiplication(2, 4))
 print("Le résultat de la division est ", division(24, 2))</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Section Compétences -->
 <section id="competences">
@@ -469,11 +566,32 @@ print("Le résultat de la division est ", division(24, 2))</code></pre>
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                
+                // Si c'est une section pliable, on l'ouvre d'abord
+                if (target.classList.contains('collapsible-header')) {
+                    const contentId = targetId + '-content';
+                    const content = document.getElementById(contentId);
+                    
+                    // Ouvrir la section si elle est fermée
+                    if (!content.classList.contains('active')) {
+                        toggleSection(contentId, target);
+                    }
+                    
+                    // Attendre un peu que l'animation d'ouverture commence puis scroller
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                } else {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
@@ -543,6 +661,32 @@ print("Le résultat de la division est ", division(24, 2))</code></pre>
             card.style.transition = 'opacity 0.6s, transform 0.6s';
             observer.observe(card);
         });
+
+        // Fonction pour ouvrir/fermer les sections
+        function toggleSection(contentId, header) {
+            const content = document.getElementById(contentId);
+            const isActive = content.classList.contains('active');
+            
+            // Fermer toutes les sections d'abord (optionnel)
+            // document.querySelectorAll('.collapsible-content').forEach(section => {
+            //     section.classList.remove('active');
+            // });
+            // document.querySelectorAll('.collapsible-header').forEach(header => {
+            //     header.classList.remove('active');
+            // });
+            
+            // Basculer l'état de la section actuelle
+            if (isActive) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Optionnel: Ouvrir une section spécifique par défaut
+        // toggleSection('projets-content', document.querySelector('#projets'));
     </script>
 </body>
 </html>
