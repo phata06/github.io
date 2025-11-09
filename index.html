@@ -45,10 +45,8 @@
         }
         
         .python-modules {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: 1fr !important;
+            display: block !important;
         }
         
         @media (max-width: 768px) {
@@ -225,10 +223,8 @@
 
         /* Styles pour la section web scraping */
         .web-scraping-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: 1fr !important;
+            display: block !important;
         }
         
         @media (max-width: 768px) {
@@ -281,10 +277,8 @@
         /* ========== CORRECTION COUPURE CONTENU ========== */
 
         .projet-automation {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            min-height: auto;
-            overflow: visible;
+            grid-template-columns: 1fr !important;
+            display: block !important;
         }
 
         .automation-content {
@@ -315,19 +309,112 @@
                 grid-column: 1;
             }
         }
+        .automation-content,
+        .python-content,
+        .explanation-grid,
+        .variables-grid {
+    display: block !important;
+    }
 
-/* Reset des hauteurs fixes problématiques */
-.projet-automation,
-.automation-description,
-.automation-features,
-.code-container,
-.automation-explanation,
-.security-note,
-.variables-example {
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-}
+    /* Reset des hauteurs fixes problématiques */
+    .projet-automation,
+    .automation-description,
+    .automation-features,
+    .code-container,
+    .automation-explanation,
+    .security-note,
+    .variables-example {
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+    }
+    /* ========== FORCER TOUT EN COLONNE UNIQUE ========== */
+
+    /* Forcer tous les conteneurs de grille en display block */
+    .explanation-grid,
+    .variables-grid,
+    .contact-content,
+    .competences-grid,
+    .commandes-grid,
+    .projets-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+    }
+
+    /* Forcer tous les enfants en display block avec marge */
+    .python-module,
+    .scraping-example,
+    .explanation-item,
+    .variable-file,
+    .categorie,
+    .commande-categorie,
+    .contact-info,
+    .contact-form {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 2rem;
+    }
+
+    /* Supprimer tous les gaps de grille */
+    .projet-automation,
+    .python-modules,
+    .web-scraping-grid,
+    .explanation-grid,
+    .variables-grid,
+    .contact-content,
+    .competences-grid,
+    .commandes-grid {
+        gap: 0 !important;
+    }
+
+    /* Ajouter des séparateurs entre les éléments */
+    .python-module + .python-module,
+    .scraping-example + .scraping-example {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e9ecef;
+    }
+
+    /* S'assurer qu'il n'y a pas de flottants */
+    .projet-automation > *,
+    .python-modules > *,
+    .web-scraping-grid > * {
+        float: none !important;
+        clear: both !important;
+    }
+
+    /* Correction pour les médias queries existantes */
+    @media (min-width: 768px) {
+        .projet-automation,
+        .python-modules,
+        .web-scraping-grid,
+        .explanation-grid,
+        .variables-grid,
+        .contact-content,
+        .competences-grid,
+        .commandes-grid {
+            display: block !important;
+            grid-template-columns: none !important;
+        }
+        
+        .contact-info,
+        .contact-form,
+        .categorie,
+        .commande-categorie {
+            width: 100% !important;
+            margin-bottom: 2rem;
+        }
+    }
+
+    /* Pour les très grands écrans - maintenir une colonne unique */
+    @media (min-width: 1024px) {
+        .projet-automation,
+        .python-modules,
+        .web-scraping-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    }
     </style>
 </head>
 <body>
