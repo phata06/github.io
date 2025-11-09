@@ -277,6 +277,57 @@
         .hamburger.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+
+        /* ========== CORRECTION COUPURE CONTENU ========== */
+
+        .projet-automation {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            min-height: auto;
+            overflow: visible;
+        }
+
+        .automation-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .content-group {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+
+        /* S'assurer que le code reste ensemble */
+        .code-container {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* Pour les écrans larges - une colonne unique */
+        @media (min-width: 768px) {
+            .projet-automation {
+                grid-template-columns: 1fr;
+            }
+            
+            .automation-description {
+                grid-column: 1;
+            }
+        }
+
+/* Reset des hauteurs fixes problématiques */
+.projet-automation,
+.automation-description,
+.automation-features,
+.code-container,
+.automation-explanation,
+.security-note,
+.variables-example {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+}
     </style>
 </head>
 <body>
