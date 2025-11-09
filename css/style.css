@@ -11,6 +11,7 @@
     --text-color: #333;
     --light-bg: #f8f9fa;
     --white: #ffffff;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 body {
@@ -18,6 +19,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
+    overflow-x: hidden;
 }
 
 /* Header et Navigation */
@@ -29,6 +31,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
 nav {
@@ -37,33 +40,57 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    z-index: 1001;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .nav-links a {
     color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
 }
 
 .nav-links a:hover {
     color: var(--secondary-color);
+    background: rgba(255,255,255,0.1);
+}
+
+/* Menu Hamburger pour mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
 }
 
 /* Sections générales */
 section {
-    padding: 5rem 2rem;
+    padding: 4rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -73,18 +100,51 @@ section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
     text-align: center;
-    padding: 8rem 2rem;
+    padding: 6rem 1rem;
     margin-top: 60px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-technologies {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.hero-technologies span {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .btn {
@@ -94,18 +154,22 @@ section {
     padding: 0.8rem 2rem;
     text-decoration: none;
     border-radius: 5px;
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Section Projets */
 .projets-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -113,7 +177,7 @@ section {
     background: var(--white);
     border-radius: 10px;
     padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     transition: transform 0.3s;
 }
 
@@ -131,6 +195,7 @@ section {
     border-radius: 15px;
     font-size: 0.8rem;
     margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
     display: inline-block;
 }
 
@@ -138,7 +203,7 @@ section {
 .competences-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -146,25 +211,63 @@ section {
     background: var(--light-bg);
     padding: 1.5rem;
     border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.categorie h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.categorie ul {
+    list-style: none;
+}
+
+.categorie li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.categorie li:last-child {
+    border-bottom: none;
 }
 
 /* Section Contact */
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2rem;
     margin-top: 2rem;
 }
 
 .contact-info p {
     margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .social-links a {
     color: var(--secondary-color);
     text-decoration: none;
-    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background: var(--secondary-color);
+    color: var(--white);
 }
 
 .contact-form input,
@@ -174,6 +277,14 @@ section {
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
 }
 
 .contact-form button {
@@ -183,6 +294,12 @@ section {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background: var(--secondary-color);
 }
 
 /* Footer */
@@ -190,62 +307,27 @@ footer {
     background: var(--primary-color);
     color: var(--white);
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
     margin-top: 2rem;
 }
 
-        /* Responsive */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero {
-        padding: 6rem 1rem;
-    }
-}
-
-.hero-technologies {
-    margin: 1.5rem 0;
-}
-
-.hero-technologies span {
-    background: rgba(255,255,255,0.2);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    margin: 0 0.5rem;
-    font-size: 0.9rem;
-    display: inline-block;
-}
-
-
-
-
 /* Section Commandes Utiles */
 .commandes-section {
-    padding: 80px 20px;
+    padding: 4rem 1rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
 .commandes-section h2 {
     text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-size: 2rem;
 }
 
 .commandes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -253,20 +335,20 @@ footer {
 .commande-categorie {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    padding: 25px;
+    padding: 1.5rem;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .commande-categorie h3 {
-    margin-bottom: 20px;
-    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
 .commande-item {
-    margin-bottom: 15px;
-    padding: 12px;
+    margin-bottom: 1rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     transition: transform 0.3s ease;
@@ -279,26 +361,260 @@ footer {
 .commande-item code {
     display: block;
     background: rgba(0, 0, 0, 0.3);
-    padding: 8px 12px;
+    padding: 0.8rem 1rem;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     color: #ffd700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    word-break: break-all;
 }
 
 .commande-item span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     opacity: 0.9;
+    line-height: 1.4;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .commandes-grid {
-        grid-template-columns: 1fr;
+/* ========== MEDIA QUERIES ========== */
+
+/* Tablettes */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 2.2rem;
     }
     
+    .hero h2 {
+        font-size: 1.3rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+/* Tablettes et mobiles */
+@media (max-width: 768px) {
+    /* Navigation */
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--primary-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        gap: 2rem;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+        width: 80%;
+        text-align: center;
+        border-radius: 8px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 5rem 1rem;
+        min-height: 70vh;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-technologies {
+        gap: 0.3rem;
+    }
+    
+    .hero-technologies span {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Sections générales */
+    section {
+        padding: 3rem 1rem;
+    }
+    
+    /* Contact */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Grilles */
+    .projets-grid,
+    .competences-grid,
+    .commandes-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Cartes */
+    .projet-card,
+    .categorie,
     .commande-categorie {
-        padding: 20px;
+        padding: 1.2rem;
+    }
+}
+
+/* Mobiles petits */
+@media (max-width: 480px) {
+    /* Navigation */
+    nav {
+        padding: 0 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 4rem 0.5rem;
+        margin-top: 50px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.1rem;
+    }
+    
+    .hero-technologies span {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Sections */
+    section {
+        padding: 2rem 0.5rem;
+    }
+    
+    /* Commandes */
+    .commandes-section {
+        padding: 3rem 0.5rem;
+    }
+    
+    .commandes-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .commande-item code {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    /* Contact */
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    .social-links {
+        gap: 0.5rem;
+    }
+    
+    .social-links a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero h2 {
+        font-size: 1rem;
+    }
+    
+    .hero-technologies span {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    section {
+        padding: 1.5rem 0.5rem;
+    }
+}
+
+/* Mode paysage mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 4rem 1rem;
+    }
+    
+    .nav-links {
+        padding: 1rem 0;
+    }
+    
+    .nav-links a {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Support tactile */
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a:hover {
+        background: transparent;
+        color: var(--white);
+    }
+    
+    .projet-card:hover {
+        transform: none;
+    }
+    
+    .commande-item:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+        box-shadow: none;
     }
 }

@@ -264,26 +264,47 @@
             color: #856404;
             margin-top: 0;
         }
+
+        /* Animation du hamburger */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Moustapha Ndiaye</div>
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#python">Script Python</a></li>
-                <li><a href="#web-scraping">Web Scraping</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#commande">Commandes utiles</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <!-- Nouveau lien Mon CV -->
-                <li><a href="mnd.html" target="_blank">Mon CV</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <div class="logo">Moustapha Ndiaye</div>
+        
+        <!-- Menu Hamburger -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
+            <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
+            <li><a href="#python" onclick="closeMenu()">Script Python</a></li>
+            <li><a href="#web-scraping" onclick="closeMenu()">Web Scraping</a></li>
+            <li><a href="#competences" onclick="closeMenu()">Compétences</a></li>
+            <li><a href="#commande" onclick="closeMenu()">Commandes utiles</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <!-- Nouveau lien Mon CV -->
+            <li><a href="mnd.html" target="_blank" onclick="closeMenu()">Mon CV</a></li>
+        </ul>
+    </nav>
+</header>
 
     <!-- Section Hero -->
 <section id="accueil" class="hero">
@@ -903,6 +924,57 @@ with open("mnd.html", "r") as file:
 
         // Optionnel: Ouvrir une section spécifique par défaut
         // toggleSection('projets-content', document.querySelector('#projets'));
+
+
+            // Fonction pour le menu hamburger
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+
+    // Fermer le menu en cliquant à l'extérieur
+    document.addEventListener('click', function(event) {
+        const nav = document.querySelector('nav');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // Animation du hamburger
+    document.querySelector('.hamburger').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Amélioration du scroll pour mobile
+    function smoothScrollTo(target) {
+        const element = document.querySelector(target);
+        if (element) {
+            const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Gestion du redimensionnement
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMenu();
+        }
+    });
     </script>
 </body>
 </html>

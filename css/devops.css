@@ -2,21 +2,20 @@
 .projet-automation {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     align-items: start;
 }
 
 .automation-description {
-    grid-column: 1 / -1;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .automation-features {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
+    margin-top: 1.2rem;
+    padding: 1.2rem;
     background-color: #f8f9fa;
     border-radius: 8px;
     border-left: 4px solid #007bff;
@@ -25,14 +24,16 @@
 .automation-features h4 {
     margin-top: 0;
     color: #343a40;
+    font-size: 1.1rem;
 }
 
 .automation-features ul {
-    padding-left: 1.5rem;
+    padding-left: 1.2rem;
 }
 
 .automation-features li {
     margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
 .code-container {
@@ -40,32 +41,36 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
 }
 
 .code-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.8rem;
     background-color: #1e1e1e;
     border-bottom: 1px solid #444;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .code-title {
     color: #e9ecef;
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .copy-btn {
     background-color: #495057;
     color: white;
     border: none;
-    padding: 0.4rem 0.8rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     transition: background-color 0.2s;
+    min-width: 60px;
 }
 
 .copy-btn:hover {
@@ -74,30 +79,29 @@
 
 .code-container pre {
     margin: 0;
-    padding: 1rem;
+    padding: 0.8rem;
     overflow-x: auto;
+    font-size: 0.85rem;
 }
 
 .code-container code {
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
     line-height: 1.4;
 }
 
 .automation-explanation {
-    grid-column: 1 / -1;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .explanation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
 .explanation-item {
-    padding: 1.5rem;
+    padding: 1.2rem;
     background-color: #f8f9fa;
     border-radius: 8px;
     border-top: 3px solid #007bff;
@@ -106,16 +110,18 @@
 .explanation-item h5 {
     margin-top: 0;
     color: #343a40;
+    font-size: 1rem;
 }
 
 .explanation-item p {
     margin-bottom: 0;
     color: #6c757d;
+    font-size: 0.9rem;
 }
 
 .security-note {
-    margin-top: 2rem;
-    padding: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
     background-color: #fff3cd;
     border: 1px solid #ffeaa7;
     border-radius: 8px;
@@ -125,26 +131,27 @@
 .security-note h5 {
     margin-top: 0;
     color: #856404;
+    font-size: 1rem;
 }
 
 .code-example {
     background-color: #2d3436;
     color: #dfe6e9;
-    padding: 1rem;
+    padding: 0.8rem;
     border-radius: 4px;
     margin: 0.5rem 0;
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     overflow-x: auto;
 }
 
 .variables-example {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .variables-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin-top: 1rem;
 }
@@ -160,18 +167,18 @@
     margin-top: 0;
     margin-bottom: 0.5rem;
     color: #495057;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .variable-file pre {
     margin: 0;
     background-color: #2d2d2d;
-    padding: 0.75rem;
+    padding: 0.6rem;
     border-radius: 4px;
 }
 
 .variable-file code {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 /* Styles pour la coloration syntaxique avec Prism */
@@ -195,18 +202,50 @@
     color: #dcdcaa;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive pour DevOps */
+@media (min-width: 768px) {
     .projet-automation {
-        grid-template-columns: 1fr;
-        padding: 1rem;
+        padding: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .automation-description {
+        grid-column: 1 / -1;
     }
     
     .explanation-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
     
     .variables-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .automation-features li {
+        font-size: 1rem;
+    }
+    
+    .code-container pre {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projet-automation {
+        gap: 3rem;
+    }
+    
+    .code-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .code-title {
+        font-size: 0.9rem;
+    }
+    
+    .copy-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
     }
 }
