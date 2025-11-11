@@ -858,6 +858,182 @@ with open("mnd.html", "r") as file:
     </div>
 </section>
 
+
+<!-- Section Commandes utiles -->
+<section id="commande" class="commandes-section">
+    <h2>Commandes Utiles</h2>
+    <div class="commandes-grid">
+        
+        <!-- Nouvelles Commandes Shell DevOps -->
+        <div class="commande-categorie">
+            <h3>Commandes Shell utiles pour les DevOps</h3>
+            <p>Mettre le shebang <code>#!/usr/bin/bash</code> au début de chaque fichier bash</p>
+            
+            <div class="commande-item">
+                <code>ls</code>
+                <span>Lister les fichiers du répertoire courant</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>ls -ltr</code>
+                <span>Lister les fichiers avec détails et tri par date</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>man commande</code>
+                <span>Afficher le manuel d'une commande ex: man ls</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>touch nom_fichier</code>
+                <span>Créer un fichier</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>mkdir nom_dossier</code>
+                <span>Créer un dossier</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>df -h</code>
+                <span>Voir la taille du disque</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>top</code>
+                <span>Afficher les processus en cours</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>nproc</code>
+                <span>Afficher le nombre de CPU</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>free -g</code>
+                <span>Afficher la mémoire disponible</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>ps</code>
+                <span>Processus actifs</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>ps -ef</code>
+                <span>Lister tous les processus actifs</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>ps -ef | grep chaine_a_chercher</code>
+                <span>Filtrer sur un processus particulier</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>date</code>
+                <span>Afficher la date</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>kill -9 id_processus</code>
+                <span>Tuer un processus via son id</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>find / -name chaine_a_chercher</code>
+                <span>find /home/user -name myScript.sh</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>curl</code>
+                <span>Télécharger des contenus web</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>wget</code>
+                <span>Télécharger des contenus web</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>set -x</code>
+                <span>Afficher toutes les commandes (mode debug)</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>set -e</code>
+                <span>Arrêter si une erreur apparaît sur une ligne</span>
+            </div>
+            
+            <div class="commande-item">
+                <code>set -o pipefail</code>
+                <span>Arrêter même s'il y a une erreur sur une ligne</span>
+            </div>
+        </div>
+
+        <!-- Ansible (garder l'existant) -->
+        <div class="commande-categorie">
+            <h3>Supprimer un utilisateur linux</h3>
+            <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
+                 Voici les principales 👇</p>
+            <div class="commande-item">
+                <code>sudo userdel nom_utilisateur</code>
+                <span>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo userdel -r nom_utilisateur</code>
+                <span>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo userdel -f nom_utilisateur</code>
+                <span>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo groupdel nom_utilisateur</code>
+                <span>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Ajouter cette catégorie dans la section Commandes utiles -->
+<div class="commande-categorie">
+    <h3>Scripting Bash - Conditions et Boucles</h3>
+    
+    <div class="commande-item">
+        <h4>Conditions en Bash</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Exemple de condition</span>
+                <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
+            </div>
+            <pre id="code-bash-condition"><code class="language-bash">a=1
+b=2
+if [ "$a" -gt "$b" ]
+then
+    echo "A est plus grand que B"
+else
+    echo "B est plus grand que A"
+fi</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Boucle for en Bash</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Exemple de boucle for</span>
+                <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+            </div>
+            <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
+do
+    echo "Itération: $i"
+done</code></pre>
+        </div>
+    </div>
+</div>
+</section>
+
+
     <!-- Section Commandes utiles -->
     <section id="commande" class="commandes-section">
         <h2>Commandes Utiles</h2>
@@ -926,6 +1102,8 @@ with open("mnd.html", "r") as file:
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script>
+        // Ajouter cette ligne dans vos imports Prism
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js">
         // Smooth scroll pour la navigation
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

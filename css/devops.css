@@ -249,3 +249,42 @@
         padding: 0.4rem 0.8rem;
     }
 }
+
+/* Styles pour les nouvelles commandes shell */
+.commande-categorie {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.commande-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.commande-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.commande-item code {
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #e83e8c;
+    display: block;
+    margin-bottom: 5px;
+    border-left: 3px solid #3498db;
+}
+
+.commande-item span {
+    color: #6c757d;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 5px;
+}
