@@ -970,28 +970,7 @@ with open("mnd.html", "r") as file:
             </div>
         </div>
 
-        <!-- Ansible (garder l'existant) -->
-        <div class="commande-categorie">
-            <h3>Supprimer un utilisateur linux</h3>
-            <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
-                 Voici les principales 👇</p>
-            <div class="commande-item">
-                <code>sudo userdel nom_utilisateur</code>
-                <span>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</span>
-            </div>
-            <div class="commande-item">
-                <code>sudo userdel -r nom_utilisateur</code>
-                <span>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</span>
-            </div>
-            <div class="commande-item">
-                <code>sudo userdel -f nom_utilisateur</code>
-                <span>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</span>
-            </div>
-            <div class="commande-item">
-                <code>sudo groupdel nom_utilisateur</code>
-                <span>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
-            </div>
-        </div>
+
 
     </div>
 
@@ -1031,6 +1010,29 @@ done</code></pre>
         </div>
     </div>
 </div>
+
+        <!-- Ansible (garder l'existant) -->
+        <div class="commande-categorie">
+            <h3>Supprimer un utilisateur linux</h3>
+            <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
+                 Voici les principales 👇</p>
+            <div class="commande-item">
+                <code>sudo userdel nom_utilisateur</code>
+                <span>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo userdel -r nom_utilisateur</code>
+                <span>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo userdel -f nom_utilisateur</code>
+                <span>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</span>
+            </div>
+            <div class="commande-item">
+                <code>sudo groupdel nom_utilisateur</code>
+                <span>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
+            </div>
+        </div>
 </section>
     
     <!-- Section Contact -->
