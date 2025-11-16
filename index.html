@@ -1049,7 +1049,7 @@ done</code></pre>
                     <a href="CV-VotreNom.pdf" download>Télécharger mon CV</a>
                 </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form"></h2>
                 <input type="text" placeholder="Votre nom" required>
                 <input type="email" placeholder="Votre email" required>
                 <textarea placeholder="Votre message" rows="5" required></textarea>
@@ -1057,6 +1057,161 @@ done</code></pre>
             </form>
         </div>
     </section>
+
+
+    <!-- Nouvelle Section Commandes Sed (à ajouter dans la section Commandes utiles) -->
+<div class="commande-categorie">
+    <h3>Commandes Sed - Traitement de texte avancé</h3>
+    
+    <div class="commande-item">
+        <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Extraction de lignes spécifiques</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
+            </div>
+            <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
+sed -n '1p' voiture.txt
+
+# Extraire et afficher les lignes 2 et 4
+sed -n '2p;4p' voiture.txt
+
+# Extraire et afficher les lignes de 2 à 4
+sed -n '2,4p' voiture.txt
+
+# Extraire et afficher les lignes par saut de 2
+sed -n '1~2p' voiture.txt
+
+# Extraire et afficher la dernière ligne
+sed -n '$p' voiture.txt
+
+# Extraire et afficher de la ligne 3 jusqu'à la fin
+sed -n '3,$p' voiture.txt</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Suppression de lignes</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Suppression sans modifier le fichier</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+            </div>
+            <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
+sed '1d' voiture.txt
+
+# Supprimer les lignes 2 et 5 et afficher le reste
+sed '2d;5d' voiture.txt
+
+# Supprimer les lignes de 2 à 4 et afficher le reste
+sed '2,4d' voiture.txt
+
+# Supprimer les lignes par saut de 2 et afficher le reste
+sed '1~2d' voiture.txt</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Modification directe du fichier (option -i)</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Commandes avec modification en place</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+            </div>
+            <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
+sed -i '1d' voiture.txt
+
+# Faire un backup et supprimer les lignes commençant par Ford
+sed -i.back '/^Ford/d' voiture.txt
+
+# Supprimer les lignes vides
+sed -i '/^$/d' voiture.txt</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Recherche avec Sed</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Recherche et filtrage</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+            </div>
+            <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
+sed -n '/Allemagne$/p' voiture.txt
+
+# Rechercher et afficher les lignes commençant par "F"
+sed -n '/^F/p' voiture.txt
+
+# Supprimer les lignes se terminant par "500"
+sed '/500$/d' voiture.txt</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Recherche et substitution</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Remplacement de texte</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+            </div>
+            <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
+sed -i 's/Ford/Toyota/' voiture.txt
+
+# Remplacer les deux premiers caractères par "Vehicule"
+sed 's/^../Vehicule /' voiture.txt
+
+# Dans les lignes contenant "neuf", remplacer "blanc" par "noire"
+sed '/neuf/s/blanc/noire/' voiture.txt
+
+# Concaténation avec le symbole &
+echo "Je suis un admin linux" | sed 's/admin/&istrateur/'
+
+# Remplacer "rice" par "eur" avec groupes de capture
+echo "Je suis directrice" | sed 's/\(direct\)rice/\1eur/'</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Insertion de lignes</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Ajout de contenu</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+            </div>
+            <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
+sed -i '1i Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne à la fin du fichier
+sed -i '$a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne après la deuxième ligne
+sed -i '2a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer "Mercedes" avant chaque ligne contenant "Ford"
+sed '/Ford/ i Mercedes' voiture.txt
+
+# Insérer "Mercedes" après chaque ligne contenant "Ford"
+sed '/Ford/ a Mercedes' voiture.txt</code></pre>
+        </div>
+    </div>
+    
+    <div class="commande-item">
+        <h4>Combinaison de commandes</h4>
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-title">Utilisation de l'option -e</span>
+                <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+            </div>
+            <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
+sed -e 's/Linux/System-Linux/' -e 's/Windows/System-Windows/' fichier.txt
+
+# Remplacer avec et sans l'option globale (g)
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/'
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer>
