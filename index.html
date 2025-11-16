@@ -970,22 +970,18 @@ with open("mnd.html", "r") as file:
             </div>
         </div>
 
-
-
-    </div>
-
-    <!-- Ajouter cette catégorie dans la section Commandes utiles -->
-<div class="commande-categorie">
-    <h3>Scripting Bash - Conditions et Boucles</h3>
-    
-    <div class="commande-item">
-        <h4>Conditions en Bash</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Exemple de condition</span>
-                <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
-            </div>
-            <pre id="code-bash-condition"><code class="language-bash">a=1
+        <!-- Scripting Bash - Conditions et Boucles -->
+        <div class="commande-categorie">
+            <h3>Scripting Bash - Conditions et Boucles</h3>
+            
+            <div class="commande-item">
+                <h4>Conditions en Bash</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Exemple de condition</span>
+                        <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
+                    </div>
+                    <pre id="code-bash-condition"><code class="language-bash">a=1
 b=2
 if [ "$a" -gt "$b" ]
 then
@@ -993,25 +989,25 @@ then
 else
     echo "B est plus grand que A"
 fi</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Boucle for en Bash</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Exemple de boucle for</span>
-                <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+                </div>
             </div>
-            <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
+            
+            <div class="commande-item">
+                <h4>Boucle for en Bash</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Exemple de boucle for</span>
+                        <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+                    </div>
+                    <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
 do
     echo "Itération: $i"
 done</code></pre>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-        <!-- Ansible (garder l'existant) -->
+        <!-- Supprimer un utilisateur linux -->
         <div class="commande-categorie">
             <h3>Supprimer un utilisateur linux</h3>
             <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
@@ -1033,45 +1029,20 @@ done</code></pre>
                 <span>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</span>
             </div>
         </div>
-</section>
-    
-    <!-- Section Contact -->
-    <section id="contact">
-        <h2>Contactez-moi</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <p>📧 <strong>Email:</strong> votre.email@domain.com</p>
-                <p>📱 <strong>Téléphone:</strong> +33 1 23 45 67 89</p>
-                <p>📍 <strong>Localisation:</strong> Ville, Pays</p>
-                <div class="social-links">
-                    <a href="https://github.com/phata06" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
-                    <a href="CV-VotreNom.pdf" download>Télécharger mon CV</a>
-                </div>
-            </div>
-            <form class="contact-form"></h2>
-                <input type="text" placeholder="Votre nom" required>
-                <input type="email" placeholder="Votre email" required>
-                <textarea placeholder="Votre message" rows="5" required></textarea>
-                <button type="submit">Envoyer le message</button>
-            </form>
-        </div>
-    </section>
 
-
-    <!-- Nouvelle Section Commandes Sed (à ajouter dans la section Commandes utiles) -->
-<div class="commande-categorie">
-    <h3>Commandes Sed - Traitement de texte avancé</h3>
-    
-    <div class="commande-item">
-        <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
-        
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Extraction de lignes spécifiques</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
-            </div>
-            <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
+        <!-- NOUVELLE SECTION COMMANDES SED -->
+        <div class="commande-categorie">
+            <h3>Commandes Sed - Traitement de texte avancé</h3>
+            
+            <div class="commande-item">
+                <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Extraction de lignes spécifiques</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
+                    </div>
+                    <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
 sed -n '1p' voiture.txt
 
 # Extraire et afficher les lignes 2 et 4
@@ -1088,17 +1059,17 @@ sed -n '$p' voiture.txt
 
 # Extraire et afficher de la ligne 3 jusqu'à la fin
 sed -n '3,$p' voiture.txt</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Suppression de lignes</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Suppression sans modifier le fichier</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
+            
+            <div class="commande-item">
+                <h4>Suppression de lignes</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Suppression sans modifier le fichier</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+                    </div>
+                    <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
 sed '1d' voiture.txt
 
 # Supprimer les lignes 2 et 5 et afficher le reste
@@ -1109,17 +1080,17 @@ sed '2,4d' voiture.txt
 
 # Supprimer les lignes par saut de 2 et afficher le reste
 sed '1~2d' voiture.txt</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Modification directe du fichier (option -i)</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Commandes avec modification en place</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
+            
+            <div class="commande-item">
+                <h4>Modification directe du fichier (option -i)</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Commandes avec modification en place</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+                    </div>
+                    <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
 sed -i '1d' voiture.txt
 
 # Faire un backup et supprimer les lignes commençant par Ford
@@ -1127,17 +1098,17 @@ sed -i.back '/^Ford/d' voiture.txt
 
 # Supprimer les lignes vides
 sed -i '/^$/d' voiture.txt</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Recherche avec Sed</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Recherche et filtrage</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
+            
+            <div class="commande-item">
+                <h4>Recherche avec Sed</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Recherche et filtrage</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+                    </div>
+                    <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
 sed -n '/Allemagne$/p' voiture.txt
 
 # Rechercher et afficher les lignes commençant par "F"
@@ -1145,17 +1116,17 @@ sed -n '/^F/p' voiture.txt
 
 # Supprimer les lignes se terminant par "500"
 sed '/500$/d' voiture.txt</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Recherche et substitution</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Remplacement de texte</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
+            
+            <div class="commande-item">
+                <h4>Recherche et substitution</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Remplacement de texte</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+                    </div>
+                    <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
 sed -i 's/Ford/Toyota/' voiture.txt
 
 # Remplacer les deux premiers caractères par "Vehicule"
@@ -1169,17 +1140,17 @@ echo "Je suis un admin linux" | sed 's/admin/&istrateur/'
 
 # Remplacer "rice" par "eur" avec groupes de capture
 echo "Je suis directrice" | sed 's/\(direct\)rice/\1eur/'</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Insertion de lignes</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Ajout de contenu</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
+            
+            <div class="commande-item">
+                <h4>Insertion de lignes</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Ajout de contenu</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+                    </div>
+                    <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
 sed -i '1i Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
 
 # Insérer une ligne à la fin du fichier
@@ -1193,25 +1164,52 @@ sed '/Ford/ i Mercedes' voiture.txt
 
 # Insérer "Mercedes" après chaque ligne contenant "Ford"
 sed '/Ford/ a Mercedes' voiture.txt</code></pre>
-        </div>
-    </div>
-    
-    <div class="commande-item">
-        <h4>Combinaison de commandes</h4>
-        <div class="code-container">
-            <div class="code-header">
-                <span class="code-title">Utilisation de l'option -e</span>
-                <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+                </div>
             </div>
-            <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
+            
+            <div class="commande-item">
+                <h4>Combinaison de commandes</h4>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Utilisation de l'option -e</span>
+                        <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+                    </div>
+                    <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
 sed -e 's/Linux/System-Linux/' -e 's/Windows/System-Windows/' fichier.txt
 
 # Remplacer avec et sans l'option globale (g)
 echo "Linux Linux Linux" | sed 's/Linux/System-Linux/'
 echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
+                </div>
+            </div>
         </div>
+        <!-- FIN DE LA NOUVELLE SECTION COMMANDES SED -->
+        
     </div>
-</div>
+</section>
+    
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-moi</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>📧 <strong>Email:</strong> votre.email@domain.com</p>
+                <p>📱 <strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+                <p>📍 <strong>Localisation:</strong> Ville, Pays</p>
+                <div class="social-links">
+                    <a href="https://github.com/phata06" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
+                    <a href="CV-VotreNom.pdf" download>Télécharger mon CV</a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Votre nom" required>
+                <input type="email" placeholder="Votre email" required>
+                <textarea placeholder="Votre message" rows="5" required></textarea>
+                <button type="submit">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1225,9 +1223,8 @@ echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script>
-        // Ajouter cette ligne dans vos imports Prism
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js">
         // Smooth scroll pour la navigation
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
