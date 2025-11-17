@@ -5,643 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ndiaye Moustapha - Ingénieur DevOps | Cloud, Automation, Infrastructure</title>
     <meta name="description" content="Portfolio de Ndiaye Moustapha - Ingénieur DevOps passionné par l'automatisation, le cloud et les infrastructures scalables">
+    
+    <!-- CSS global -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- CSS DevOps / sections techniques -->
+    <link rel="stylesheet" href="css/devops.css">
+    
+    <!-- Prism.js pour la coloration syntaxique -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-    <style>
-        /* Styles additionnels pour la nouvelle section Python */
-        .python-section {
-            background-color: #f8f9fa;
-            padding: 60px 20px;
-            border-radius: 8px;
-            margin: 40px 0;
-        }
-        
-        .python-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .python-explanation {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        
-        .python-keywords {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .python-keywords span {
-            background-color: #e9ecef;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .python-modules {
-            grid-template-columns: 1fr !important;
-            display: block !important;
-        }
-        
-        @media (max-width: 768px) {
-            .python-modules {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-            }
-            
-            .nav-links li {
-                margin: 5px 10px;
-            }
-        }
-        
-        .python-module {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .python-module h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .code-container {
-            margin-top: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .code-header {
-            background-color: #2d3748;
-            color: white;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .copy-btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background-color 0.3s;
-        }
-        
-        .copy-btn:hover {
-            background-color: #2980b9;
-        }
-        
-        pre[class*="language-"] {
-            margin: 0;
-            border-radius: 0;
-        }
-        
-        .folder-structure {
-            background-color: #2d3748;
-            color: #e2e8f0;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-family: monospace;
-        }
-        
-        .folder-structure .folder {
-            color: #63b3ed;
-        }
-        
-        .folder-structure .file {
-            color: #68d391;
-        }
-
-        /* Styles pour les sections pliables */
-        .collapsible-section {
-            margin: 40px 0;
-        }
-
-        .collapsible-header {
-            background: linear-gradient(135deg, #3498db, #2c3e50);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .collapsible-header:hover {
-            background: linear-gradient(135deg, #2980b9, #34495e);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        .collapsible-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .collapsible-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.3s ease;
-            background-color: white;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .collapsible-content.active {
-            max-height: 5000px;
-            padding: 30px;
-        }
-
-        .collapsible-header.active .collapsible-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Styles pour les indicateurs de statut */
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            background-color: rgba(255,255,255,0.2);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 15px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #2ecc71;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        /* Style pour le lien CV dans la navigation */
-        .nav-links li a[href*="mnd.html"] {
-            background-color: #1abc9c;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links li a[href*="mnd.html"]:hover {
-            background-color: #16a085;
-            transform: translateY(-2px);
-        }
-
-        /* Styles pour la section web scraping */
-        .web-scraping-grid {
-            grid-template-columns: 1fr !important;
-            display: block !important;
-        }
-        
-        @media (max-width: 768px) {
-            .web-scraping-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .scraping-example {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .scraping-example h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #e74c3c;
-            padding-bottom: 10px;
-        }
-        
-        .note {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        .note h5 {
-            color: #856404;
-            margin-top: 0;
-        }
-
-        /* Animation du hamburger */
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* ========== CORRECTION COUPURE CONTENU ========== */
-
-        .projet-automation {
-            grid-template-columns: 1fr !important;
-            display: block !important;
-        }
-
-        .automation-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .content-group {
-            break-inside: avoid;
-            page-break-inside: avoid;
-            margin-bottom: 2rem;
-        }
-
-        /* S'assurer que le code reste ensemble */
-        .code-container {
-            break-inside: avoid;
-            page-break-inside: avoid;
-        }
-
-        /* Pour les écrans larges - une colonne unique */
-        @media (min-width: 768px) {
-            .projet-automation {
-                grid-template-columns: 1fr;
-            }
-            
-            .automation-description {
-                grid-column: 1;
-            }
-        }
-        .automation-content,
-        .python-content,
-        .explanation-grid,
-        .variables-grid {
-    display: block !important;
-    }
-
-    /* Reset des hauteurs fixes problématiques */
-    .projet-automation,
-    .automation-description,
-    .automation-features,
-    .code-container,
-    .automation-explanation,
-    .security-note,
-    .variables-example {
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-    }
-    /* ========== FORCER TOUT EN COLONNE UNIQUE ========== */
-
-    /* Forcer tous les conteneurs de grille en display block */
-    .explanation-grid,
-    .variables-grid,
-    .contact-content,
-    .competences-grid,
-    .commandes-grid,
-    .projets-grid {
-        display: block !important;
-        grid-template-columns: none !important;
-    }
-
-    /* Forcer tous les enfants en display block avec marge */
-    .python-module,
-    .scraping-example,
-    .explanation-item,
-    .variable-file,
-    .categorie,
-    .commande-categorie,
-    .contact-info,
-    .contact-form {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 2rem;
-    }
-
-    /* Supprimer tous les gaps de grille */
-    .projet-automation,
-    .python-modules,
-    .web-scraping-grid,
-    .explanation-grid,
-    .variables-grid,
-    .contact-content,
-    .competences-grid,
-    .commandes-grid {
-        gap: 0 !important;
-    }
-
-    /* Ajouter des séparateurs entre les éléments */
-    .python-module + .python-module,
-    .scraping-example + .scraping-example {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid #e9ecef;
-    }
-
-    /* S'assurer qu'il n'y a pas de flottants */
-    .projet-automation > *,
-    .python-modules > *,
-    .web-scraping-grid > * {
-        float: none !important;
-        clear: both !important;
-    }
-
-    /* Correction pour les médias queries existantes */
-    @media (min-width: 768px) {
-        .projet-automation,
-        .python-modules,
-        .web-scraping-grid,
-        .explanation-grid,
-        .variables-grid,
-        .contact-content,
-        .competences-grid,
-        .commandes-grid {
-            display: block !important;
-            grid-template-columns: none !important;
-        }
-        
-        .contact-info,
-        .contact-form,
-        .categorie,
-        .commande-categorie {
-            width: 100% !important;
-            margin-bottom: 2rem;
-        }
-    }
-
-    /* Pour les très grands écrans - maintenir une colonne unique */
-    @media (min-width: 1024px) {
-        .projet-automation,
-        .python-modules,
-        .web-scraping-grid {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-    }
-
-    /* NOUVEAUX STYLES POUR LE MENU DES COMMANDES */
-    .commandes-container {
-        display: flex;
-        gap: 30px;
-        margin-top: 30px;
-    }
-
-    .commandes-menu {
-        width: 280px;
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        height: fit-content;
-        position: sticky;
-        top: 100px;
-    }
-
-    .commandes-menu h3 {
-        color: #2c3e50;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #3498db;
-        font-size: 1.2rem;
-    }
-
-    .menu-categories {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .menu-categories li {
-        margin-bottom: 8px;
-    }
-
-    .menu-categories a {
-        display: block;
-        padding: 12px 15px;
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        text-decoration: none;
-        color: #2c3e50;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        border-left: 4px solid transparent;
-    }
-
-    .menu-categories a:hover {
-        background-color: #3498db;
-        color: white;
-        transform: translateX(5px);
-        border-left-color: #2980b9;
-    }
-
-    .menu-categories a.active {
-        background-color: #3498db;
-        color: white;
-        border-left-color: #2980b9;
-    }
-
-    .commandes-content {
-        flex: 1;
-    }
-
-    .commande-categorie {
-        background: white;
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        scroll-margin-top: 100px;
-    }
-
-    .commande-categorie h3 {
-        color: #2c3e50;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid #3498db;
-        font-size: 1.4rem;
-    }
-
-    .commande-item {
-        margin-bottom: 25px;
-        padding-bottom: 25px;
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    .commande-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    /* CORRECTION : Styles pour les éléments de commande avec texte visible */
-    .commande-item h4 {
-        color: #2c3e50;
-        margin-bottom: 10px;
-        font-size: 1rem;
-        font-weight: 600;
-        font-family: monospace;
-        background-color: #f8f9fa;
-        padding: 8px 12px;
-        border-radius: 4px;
-        border-left: 3px solid #3498db;
-    }
-
-    .commande-item p {
-        color: #555;
-        margin: 0;
-        line-height: 1.5;
-    }
-
-    /* Style spécifique pour la section DevOps */
-    #shell-devops .commande-item {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    #shell-devops .commande-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    /* CORRECTION : Style pour tous les paragraphes dans les sections de commandes */
-    .commande-categorie p {
-        color: #555 !important;
-        line-height: 1.6;
-    }
-
-    @media (max-width: 768px) {
-        .commandes-container {
-            flex-direction: column;
-        }
-        
-        .commandes-menu {
-            width: 100%;
-            position: static;
-            margin-bottom: 20px;
-        }
-        
-        .menu-categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .menu-categories li {
-            flex: 1;
-            min-width: 150px;
-            margin-bottom: 0;
-        }
-        
-        .menu-categories a {
-            text-align: center;
-            border-left: none;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .menu-categories a:hover,
-        .menu-categories a.active {
-            border-left: none;
-            border-bottom-color: #2980b9;
-            transform: translateY(-2px);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .menu-categories {
-            flex-direction: column;
-        }
-        
-        .menu-categories li {
-            min-width: auto;
-        }
-    }
-    </style>
 </head>
 <body>
     <!-- Header -->
-<header>
-    <nav>
-        <div class="logo">Moustapha Ndiaye</div>
-        
-        <!-- Menu Hamburger -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
-            <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
-            <li><a href="#python" onclick="closeMenu()">Script Python</a></li>
-            <li><a href="#web-scraping" onclick="closeMenu()">Web Scraping</a></li>
-            <li><a href="#competences" onclick="closeMenu()">Compétences</a></li>
-            <li><a href="#commande" onclick="closeMenu()">Commandes utiles</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-            <!-- Nouveau lien Mon CV -->
-            <li><a href="mnd.html" target="_blank" onclick="closeMenu()">Mon CV</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <div class="logo">Moustapha Ndiaye</div>
+            
+            <!-- Menu Hamburger -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
+                <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
+                <li><a href="#python" onclick="closeMenu()">Script Python</a></li>
+                <li><a href="#web-scraping" onclick="closeMenu()">Web Scraping</a></li>
+                <li><a href="#competences" onclick="closeMenu()">Compétences</a></li>
+                <li><a href="#commande" onclick="closeMenu()">Commandes utiles</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                <!-- Nouveau lien Mon CV -->
+                <li><a href="mnd.html" target="_blank" onclick="closeMenu()">Mon CV</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Section Hero -->
-<section id="accueil" class="hero">
-    <div class="hero-content">
-        <h1>Ndiaye Moustapha</h1>
-        <h2>Ingénieur DevOps</h2>
-        <p>🔧 Automation | ☁️ Cloud Native | 🚀 Scalability | 🔒 DevSecOps</p>
-        <div class="hero-technologies">
-            <span>Ansible</span>
-            <span>Kubernetes</span>
-            <span>Terraform</span>
-            <span>Docker</span>
-            <span>SQL</span>
-            <span>Python</span>
-            <span>Bash</span>
-            <span>JavaScript</span>
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Ndiaye Moustapha</h1>
+            <h2>Ingénieur DevOps</h2>
+            <p>🔧 Automation | ☁️ Cloud Native | 🚀 Scalability | 🔒 DevSecOps</p>
+            <div class="hero-technologies">
+                <span>Ansible</span>
+                <span>Kubernetes</span>
+                <span>Terraform</span>
+                <span>Docker</span>
+                <span>SQL</span>
+                <span>Python</span>
+                <span>Bash</span>
+                <span>JavaScript</span>
+            </div>
+            <a href="#projets" class="btn">Voir mes réalisations techniques</a>
         </div>
-        <a href="#projets" class="btn">Voir mes réalisations techniques</a>
-    </div>
-</section>
+    </section>
 
-    <!-- Section Projets (maintenant pliable) -->
+    <!-- Section Projets (pliable) -->
     <div class="collapsible-section">
         <div id="projets" class="collapsible-header" onclick="toggleSection('projets-content', this)">
             <h2>Automatiser la création d'utilisateur 
@@ -752,7 +172,7 @@ new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
         </div>
     </div>
 
-    <!-- Nouvelle Section Script Python (maintenant pliable) -->
+    <!-- Section Script Python (pliable) -->
     <div class="collapsible-section">
         <div id="python" class="collapsible-header" onclick="toggleSection('python-content', this)">
             <h2>Script Python - Modules et Packages
@@ -861,7 +281,7 @@ print("Le résultat de la division est ", division(24, 2))</code></pre>
         </div>
     </div>
 
-    <!-- Nouvelle Section Web Scraping (maintenant pliable) -->
+    <!-- Section Web Scraping (pliable) -->
     <div class="collapsible-section">
         <div id="web-scraping" class="collapsible-header" onclick="toggleSection('web-scraping-content', this)">
             <h2>Extraction de données web avec Python
@@ -985,7 +405,7 @@ with open("mnd.html", "r") as file:
                                 <span class="code-title">main.py</span>
                                 <button class="copy-btn" onclick="copyCode('code-li-class')">Copier</button>
                             </div>
-                            <pre id="code-li-class"><code class="language-python"># Recuperer les elements de la balise <li> et qui ont une class="skill-item"
+                            <pre id="code-li-class"><code class="language-python"># Recuperer les elements de la balise &lt;li&gt; et qui ont une class="skill-item"
 with open("mnd.html", "r") as file:
     data = BeautifulSoup(file.read(), 'html.parser')
     res = data.select("li", class_="skill-item")
@@ -999,179 +419,178 @@ with open("mnd.html", "r") as file:
     </div>
 
     <!-- Section Compétences -->
-<section id="competences">
-    <h2>Compétences Techniques</h2>
-    <div class="competences-grid">
-        <div class="categorie">
-            <h3>Cloud & Infrastructure</h3>
-            <ul>
-                <li>AWS / Azure / GCP</li>
-                <li>Docker & Conteneurisation</li>
-                <li>Kubernetes & Orchestration</li>
-                <li>Terraform & Infrastructure as Code</li>
-                <li>Ansible / Puppet / Chef</li>
-            </ul>
+    <section id="competences">
+        <h2>Compétences Techniques</h2>
+        <div class="competences-grid">
+            <div class="categorie">
+                <h3>Cloud & Infrastructure</h3>
+                <ul>
+                    <li>AWS / Azure / GCP</li>
+                    <li>Docker & Conteneurisation</li>
+                    <li>Kubernetes & Orchestration</li>
+                    <li>Terraform & Infrastructure as Code</li>
+                    <li>Ansible / Puppet / Chef</li>
+                </ul>
+            </div>
+            <div class="categorie">
+                <h3>CI/CD & Automation</h3>
+                <ul>
+                    <li>Jenkins / GitLab CI</li>
+                    <li>GitHub Actions</li>
+                    <li>ArgoCD / Flux</li>
+                    <li>Scripting (Bash, Python)</li>
+                    <li>Quality Gates</li>
+                </ul>
+            </div>
+            <div class="categorie">
+                <h3>Monitoring & Sécurité</h3>
+                <ul>
+                    <li>Prometheus / Grafana</li>
+                    <li>ELK Stack</li>
+                    <li>DevSecOps</li>
+                    <li>Vault / Secrets Management</li>
+                    <li>Sécurité Cloud</li>
+                </ul>
+            </div>
         </div>
-        <div class="categorie">
-            <h3>CI/CD & Automation</h3>
-            <ul>
-                <li>Jenkins / GitLab CI</li>
-                <li>GitHub Actions</li>
-                <li>ArgoCD / Flux</li>
-                <li>Scripting (Bash, Python)</li>
-                <li>Quality Gates</li>
-            </ul>
-        </div>
-        <div class="categorie">
-            <h3>Monitoring & Sécurité</h3>
-            <ul>
-                <li>Prometheus / Grafana</li>
-                <li>ELK Stack</li>
-                <li>DevSecOps</li>
-                <li>Vault / Secrets Management</li>
-                <li>Sécurité Cloud</li>
-            </ul>
-        </div>
-    </div>
-</section>
+    </section>
 
-
-<!-- Section Commandes utiles AVEC NOUVEAU MENU -->
-<section id="commande" class="commandes-section">
-    <h2>Commandes Utiles</h2>
-    
-    <div class="commandes-container">
-        <!-- Menu latéral -->
-        <div class="commandes-menu">
-            <h3>Catégories</h3>
-            <ul class="menu-categories">
-                <li><a href="#shell-devops" class="menu-link active" onclick="setActiveCategory('shell-devops')">Commandes Shell DevOps</a></li>
-                <li><a href="#scripting-bash" class="menu-link" onclick="setActiveCategory('scripting-bash')">Scripting Bash</a></li>
-                <li><a href="#supprimer-user" class="menu-link" onclick="setActiveCategory('supprimer-user')">Supprimer Utilisateur</a></li>
-                <li><a href="#commandes-sed" class="menu-link" onclick="setActiveCategory('commandes-sed')">Commandes Sed</a></li>
-            </ul>
-        </div>
-
-        <!-- Contenu des commandes -->
-        <div class="commandes-content">
-            <!-- Commandes Shell DevOps -->
-            <div id="shell-devops" class="commande-categorie">
-                <h3>Commandes Shell utiles pour les DevOps</h3>
-                <p>Mettre le shebang <code>#!/usr/bin/bash</code> au début de chaque fichier bash</p>
-                
-                <div class="commande-item">
-                    <h4>ls</h4>
-                    <p>Lister les fichiers du répertoire courant</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>ls -ltr</h4>
-                    <p>Lister les fichiers avec détails et tri par date</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>man commande</h4>
-                    <p>Afficher le manuel d'une commande ex: man ls</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>touch nom_fichier</h4>
-                    <p>Créer un fichier</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>mkdir nom_dossier</h4>
-                    <p>Créer un dossier</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>df -h</h4>
-                    <p>Voir la taille du disque</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>top</h4>
-                    <p>Afficher les processus en cours</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>nproc</h4>
-                    <p>Afficher le nombre de CPU</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>free -g</h4>
-                    <p>Afficher la mémoire disponible</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>ps</h4>
-                    <p>Processus actifs</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>ps -ef</h4>
-                    <p>Lister tous les processus actifs</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>ps -ef | grep chaine_a_chercher</h4>
-                    <p>Filtrer sur un processus particulier</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>date</h4>
-                    <p>Afficher la date</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>kill -9 id_processus</h4>
-                    <p>Tuer un processus via son id</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>find / -name chaine_a_chercher</h4>
-                    <p>find /home/user -name myScript.sh</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>curl</h4>
-                    <p>Télécharger des contenus web</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>wget</h4>
-                    <p>Télécharger des contenus web</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>set -x</h4>
-                    <p>Afficher toutes les commandes (mode debug)</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>set -e</h4>
-                    <p>Arrêter si une erreur apparaît sur une ligne</p>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>set -o pipefail</h4>
-                    <p>Arrêter même s'il y a une erreur sur une ligne</p>
-                </div>
+    <!-- Section Commandes utiles -->
+    <section id="commande" class="commandes-section">
+        <h2>Commandes Utiles</h2>
+        
+        <div class="commandes-container">
+            <!-- Menu latéral -->
+            <div class="commandes-menu">
+                <h3>Catégories</h3>
+                <ul class="menu-categories">
+                    <li><a href="#shell-devops" class="menu-link active" onclick="setActiveCategory('shell-devops')">Commandes Shell DevOps</a></li>
+                    <li><a href="#scripting-bash" class="menu-link" onclick="setActiveCategory('scripting-bash')">Scripting Bash</a></li>
+                    <li><a href="#supprimer-user" class="menu-link" onclick="setActiveCategory('supprimer-user')">Supprimer Utilisateur</a></li>
+                    <li><a href="#commandes-sed" class="menu-link" onclick="setActiveCategory('commandes-sed')">Commandes Sed</a></li>
+                </ul>
             </div>
 
-            <!-- Scripting Bash - Conditions et Boucles -->
-            <div id="scripting-bash" class="commande-categorie">
-                <h3>Scripting Bash - Conditions et Boucles</h3>
-                
-                <div class="commande-item">
-                    <h4>Conditions en Bash</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Exemple de condition</span>
-                            <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
-                        </div>
-                        <pre id="code-bash-condition"><code class="language-bash">a=1
+            <!-- Contenu des commandes -->
+            <div class="commandes-content">
+                <!-- Commandes Shell DevOps -->
+                <div id="shell-devops" class="commande-categorie">
+                    <h3>Commandes Shell utiles pour les DevOps</h3>
+                    <p>Mettre le shebang <code>#!/usr/bin/bash</code> au début de chaque fichier bash</p>
+                    
+                    <div class="commande-item">
+                        <h4>ls</h4>
+                        <p>Lister les fichiers du répertoire courant</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ls -ltr</h4>
+                        <p>Lister les fichiers avec détails et tri par date</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>man commande</h4>
+                        <p>Afficher le manuel d'une commande ex: man ls</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>touch nom_fichier</h4>
+                        <p>Créer un fichier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>mkdir nom_dossier</h4>
+                        <p>Créer un dossier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>df -h</h4>
+                        <p>Voir la taille du disque</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>top</h4>
+                        <p>Afficher les processus en cours</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>nproc</h4>
+                        <p>Afficher le nombre de CPU</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>free -g</h4>
+                        <p>Afficher la mémoire disponible</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps</h4>
+                        <p>Processus actifs</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps -ef</h4>
+                        <p>Lister tous les processus actifs</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps -ef | grep chaine_a_chercher</h4>
+                        <p>Filtrer sur un processus particulier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>date</h4>
+                        <p>Afficher la date</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>kill -9 id_processus</h4>
+                        <p>Tuer un processus via son id</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>find / -name chaine_a_chercher</h4>
+                        <p>find /home/user -name myScript.sh</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>curl</h4>
+                        <p>Télécharger des contenus web</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>wget</h4>
+                        <p>Télécharger des contenus web</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -x</h4>
+                        <p>Afficher toutes les commandes (mode debug)</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -e</h4>
+                        <p>Arrêter si une erreur apparaît sur une ligne</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -o pipefail</h4>
+                        <p>Arrêter même s'il y a une erreur sur une ligne</p>
+                    </div>
+                </div>
+
+                <!-- Scripting Bash - Conditions et Boucles -->
+                <div id="scripting-bash" class="commande-categorie">
+                    <h3>Scripting Bash - Conditions et Boucles</h3>
+                    
+                    <div class="commande-item">
+                        <h4>Conditions en Bash</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Exemple de condition</span>
+                                <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
+                            </div>
+                            <pre id="code-bash-condition"><code class="language-bash">a=1
 b=2
 if [ "$a" -gt "$b" ]
 then
@@ -1179,60 +598,60 @@ then
 else
     echo "B est plus grand que A"
 fi</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Boucle for en Bash</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Exemple de boucle for</span>
-                            <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
                         </div>
-                        <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Boucle for en Bash</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Exemple de boucle for</span>
+                                <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+                            </div>
+                            <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
 do
     echo "Itération: $i"
 done</code></pre>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Supprimer un utilisateur linux -->
-            <div id="supprimer-user" class="commande-categorie">
-                <h3>Supprimer un utilisateur linux</h3>
-                <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
-                     Voici les principales 👇</p>
-                <div class="commande-item">
-                    <h4>sudo userdel nom_utilisateur</h4>
-                    <p>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</p>
+                <!-- Supprimer un utilisateur linux -->
+                <div id="supprimer-user" class="commande-categorie">
+                    <h3>Supprimer un utilisateur linux</h3>
+                    <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
+                        Voici les principales 👇</p>
+                    <div class="commande-item">
+                        <h4>sudo userdel nom_utilisateur</h4>
+                        <p>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo userdel -r nom_utilisateur</h4>
+                        <p>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo userdel -f nom_utilisateur</h4>
+                        <p>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo groupdel nom_utilisateur</h4>
+                        <p>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</p>
+                    </div>
                 </div>
-                <div class="commande-item">
-                    <h4>sudo userdel -r nom_utilisateur</h4>
-                    <p>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</p>
-                </div>
-                <div class="commande-item">
-                    <h4>sudo userdel -f nom_utilisateur</h4>
-                    <p>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</p>
-                </div>
-                <div class="commande-item">
-                    <h4>sudo groupdel nom_utilisateur</h4>
-                    <p>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</p>
-                </div>
-            </div>
 
-            <!-- Commandes Sed -->
-            <div id="commandes-sed" class="commande-categorie">
-                <h3>Commandes Sed - Traitement de texte avancé</h3>
-                
-                <div class="commande-item">
-                    <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+                <!-- Commandes Sed -->
+                <div id="commandes-sed" class="commande-categorie">
+                    <h3>Commandes Sed - Traitement de texte avancé</h3>
                     
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Extraction de lignes spécifiques</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
-                        </div>
-                        <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
+                    <div class="commande-item">
+                        <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Extraction de lignes spécifiques</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
+                            </div>
+                            <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
 sed -n '1p' voiture.txt
 
 # Extraire et afficher les lignes 2 et 4
@@ -1249,17 +668,17 @@ sed -n '$p' voiture.txt
 
 # Extraire et afficher de la ligne 3 jusqu'à la fin
 sed -n '3,$p' voiture.txt</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Suppression de lignes</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Suppression sans modifier le fichier</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
                         </div>
-                        <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Suppression de lignes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Suppression sans modifier le fichier</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+                            </div>
+                            <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
 sed '1d' voiture.txt
 
 # Supprimer les lignes 2 et 5 et afficher le reste
@@ -1270,17 +689,17 @@ sed '2,4d' voiture.txt
 
 # Supprimer les lignes par saut de 2 et afficher le reste
 sed '1~2d' voiture.txt</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Modification directe du fichier (option -i)</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Commandes avec modification en place</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
                         </div>
-                        <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Modification directe du fichier (option -i)</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Commandes avec modification en place</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+                            </div>
+                            <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
 sed -i '1d' voiture.txt
 
 # Faire un backup et supprimer les lignes commençant par Ford
@@ -1288,17 +707,17 @@ sed -i.back '/^Ford/d' voiture.txt
 
 # Supprimer les lignes vides
 sed -i '/^$/d' voiture.txt</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Recherche avec Sed</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Recherche et filtrage</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
                         </div>
-                        <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Recherche avec Sed</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Recherche et filtrage</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+                            </div>
+                            <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
 sed -n '/Allemagne$/p' voiture.txt
 
 # Rechercher et afficher les lignes commençant par "F"
@@ -1306,17 +725,17 @@ sed -n '/^F/p' voiture.txt
 
 # Supprimer les lignes se terminant par "500"
 sed '/500$/d' voiture.txt</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Recherche et substitution</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Remplacement de texte</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
                         </div>
-                        <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Recherche et substitution</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Remplacement de texte</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+                            </div>
+                            <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
 sed -i 's/Ford/Toyota/' voiture.txt
 
 # Remplacer les deux premiers caractères par "Vehicule"
@@ -1330,17 +749,17 @@ echo "Je suis un admin linux" | sed 's/admin/&istrateur/'
 
 # Remplacer "rice" par "eur" avec groupes de capture
 echo "Je suis directrice" | sed 's/\(direct\)rice/\1eur/'</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Insertion de lignes</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Ajout de contenu</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
                         </div>
-                        <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Insertion de lignes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Ajout de contenu</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+                            </div>
+                            <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
 sed -i '1i Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
 
 # Insérer une ligne à la fin du fichier
@@ -1354,29 +773,29 @@ sed '/Ford/ i Mercedes' voiture.txt
 
 # Insérer "Mercedes" après chaque ligne contenant "Ford"
 sed '/Ford/ a Mercedes' voiture.txt</code></pre>
-                    </div>
-                </div>
-                
-                <div class="commande-item">
-                    <h4>Combinaison de commandes</h4>
-                    <div class="code-container">
-                        <div class="code-header">
-                            <span class="code-title">Utilisation de l'option -e</span>
-                            <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
                         </div>
-                        <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Combinaison de commandes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Utilisation de l'option -e</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+                            </div>
+                            <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
 sed -e 's/Linux/System-Linux/' -e 's/Windows/System-Windows/' fichier.txt
 
 # Remplacer avec et sans l'option globale (g)
 echo "Linux Linux Linux" | sed 's/Linux/System-Linux/'
 echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-    
+    </section>
+        
     <!-- Section Contact -->
     <section id="contact">
         <h2>Contactez-moi</h2>
@@ -1403,7 +822,7 @@ echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 [Votre Nom]. Tous droits réservés.</p>
-        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+        <p class="footer-note">
             Ce code est visible à titre de démonstration. Toute modification ou reproduction est interdite sans autorisation.
         </p>
     </footer>
@@ -1502,43 +921,19 @@ echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
             }, 2000);
         }
 
-        document.querySelectorAll('.commande-categorie').forEach(card => {
+        // Observer les catégories de commandes, modules Python et exemples
+        document.querySelectorAll('.commande-categorie, .python-module, .scraping-example').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.6s, transform 0.6s';
             observer.observe(card);
         });
 
-        // Observer les modules Python
-        document.querySelectorAll('.python-module').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s, transform 0.6s';
-            observer.observe(card);
-        });
-
-        // Observer les exemples de web scraping
-        document.querySelectorAll('.scraping-example').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s, transform 0.6s';
-            observer.observe(card);
-        });
-
-        // Fonction pour ouvrir/fermer les sections
+        // Fonction pour ouvrir/fermer les sections pliables
         function toggleSection(contentId, header) {
             const content = document.getElementById(contentId);
             const isActive = content.classList.contains('active');
             
-            // Fermer toutes les sections d'abord (optionnel)
-            // document.querySelectorAll('.collapsible-content').forEach(section => {
-            //     section.classList.remove('active');
-            // });
-            // document.querySelectorAll('.collapsible-header').forEach(header => {
-            //     header.classList.remove('active');
-            // });
-            
-            // Basculer l'état de la section actuelle
             if (isActive) {
                 content.classList.remove('active');
                 header.classList.remove('active');
@@ -1548,113 +943,101 @@ echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
             }
         }
 
-        // Optionnel: Ouvrir une section spécifique par défaut
-        // toggleSection('projets-content', document.querySelector('#projets'));
-
-
-            // Fonction pour le menu hamburger
-    function toggleMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        const hamburger = document.querySelector('.hamburger');
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    }
-
-    function closeMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        const hamburger = document.querySelector('.hamburger');
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    }
-
-    // Fermer le menu en cliquant à l'extérieur
-    document.addEventListener('click', function(event) {
-        const nav = document.querySelector('nav');
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
-            closeMenu();
+        // Fonction pour le menu hamburger
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
-    });
 
-    // Animation du hamburger
-    document.querySelector('.hamburger').addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    // Amélioration du scroll pour mobile
-    function smoothScrollTo(target) {
-        const element = document.querySelector(target);
-        if (element) {
-            const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+        function closeMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
         }
-    }
 
-    // Gestion du redimensionnement
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            closeMenu();
-        }
-    });
-
-    // NOUVEAU JAVASCRIPT POUR LE MENU DES COMMANDES
-    function setActiveCategory(categoryId) {
-        // Retirer la classe active de tous les liens
-        document.querySelectorAll('.menu-link').forEach(link => {
-            link.classList.remove('active');
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
         });
-        
-        // Ajouter la classe active au lien cliqué
-        event.target.classList.add('active');
-        
-        // Faire défiler jusqu'à la catégorie
-        const targetElement = document.getElementById(categoryId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    }
 
-    // Observer pour mettre à jour le menu actif lors du défilement
-    const observerCommandes = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                document.querySelectorAll('.menu-link').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
+        // Empêcher la propagation sur le hamburger
+        document.querySelector('.hamburger').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Gestion du redimensionnement
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // Menu des commandes : clic sur une catégorie
+        function setActiveCategory(categoryId) {
+            // Retirer la classe active de tous les liens
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Ajouter la classe active au lien cliqué
+            document.querySelectorAll('.menu-link').forEach(link => {
+                if (link.getAttribute('href') === `#${categoryId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Faire défiler jusqu'à la catégorie
+            const targetElement = document.getElementById(categoryId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
-        });
-    }, {
-        threshold: 0.5,
-        rootMargin: '-100px 0px -100px 0px'
-    });
-
-    // Observer toutes les catégories de commandes
-    document.querySelectorAll('.commande-categorie').forEach(categorie => {
-        observerCommandes.observe(categorie);
-    });
-
-    // Initialiser la première catégorie comme active
-    document.addEventListener('DOMContentLoaded', function() {
-        const firstCategory = document.querySelector('.commande-categorie');
-        if (firstCategory) {
-            const firstLink = document.querySelector(`.menu-link[href="#${firstCategory.id}"]`);
-            if (firstLink) {
-                firstLink.classList.add('active');
-            }
         }
-    });
+
+        // Observer pour mettre à jour le menu actif lors du défilement
+        const observerCommandes = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.menu-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '-100px 0px -100px 0px'
+        });
+
+        // Observer toutes les catégories de commandes
+        document.querySelectorAll('.commande-categorie').forEach(categorie => {
+            observerCommandes.observe(categorie);
+        });
+
+        // Initialiser la première catégorie comme active
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCategory = document.querySelector('.commande-categorie');
+            if (firstCategory) {
+                const firstLink = document.querySelector(`.menu-link[href="#${firstCategory.id}"]`);
+                if (firstLink) {
+                    firstLink.classList.add('active');
+                }
+            }
+        });
     </script>
 </body>
 </html>

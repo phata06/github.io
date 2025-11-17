@@ -1,12 +1,94 @@
-/* Styles pour la section d'automatisation */
+/* === SECTIONS PLIABLES (collapsibles) === */
+.collapsible-section {
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.collapsible-header {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: var(--text-on-primary);
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.collapsible-header:hover {
+    background: linear-gradient(135deg, #2980b9, #34495e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.collapsible-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.collapsible-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header.active .collapsible-icon {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    background-color: var(--bg-card);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 0 30px;
+}
+
+.collapsible-content.active {
+    max-height: 5000px;
+    padding: 30px;
+}
+
+/* Indicateurs de statut */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--status-success);
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* === SECTION AUTOMATION / DEVOPS (playbook Ansible) === */
 .projet-automation {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1.5rem 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .automation-description {
@@ -16,14 +98,14 @@
 .automation-features {
     margin-top: 1.2rem;
     padding: 1.2rem;
-    background-color: #f8f9fa;
+    background-color: var(--bg-section-light);
     border-radius: 8px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid var(--secondary-color);
 }
 
 .automation-features h4 {
     margin-top: 0;
-    color: #343a40;
+    color: var(--primary-color);
     font-size: 1.1rem;
 }
 
@@ -36,8 +118,9 @@
     font-size: 0.9rem;
 }
 
+/* Code blocks génériques (Ansible, Bash, Python) */
 .code-container {
-    background-color: #2d2d2d;
+    background-color: var(--code-bg);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -49,7 +132,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.6rem 0.8rem;
-    background-color: #1e1e1e;
+    background-color: var(--code-header-bg);
     border-bottom: 1px solid #444;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -63,7 +146,7 @@
 
 .copy-btn {
     background-color: #495057;
-    color: white;
+    color: var(--text-on-primary);
     border: none;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
@@ -89,6 +172,7 @@
     line-height: 1.4;
 }
 
+/* Explications automation */
 .automation-explanation {
     margin-top: 1.5rem;
 }
@@ -102,28 +186,29 @@
 
 .explanation-item {
     padding: 1.2rem;
-    background-color: #f8f9fa;
+    background-color: var(--bg-section-light);
     border-radius: 8px;
-    border-top: 3px solid #007bff;
+    border-top: 3px solid var(--secondary-color);
 }
 
 .explanation-item h5 {
     margin-top: 0;
-    color: #343a40;
+    color: var(--primary-color);
     font-size: 1rem;
 }
 
 .explanation-item p {
     margin-bottom: 0;
-    color: #6c757d;
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 
+/* Note de sécurité */
 .security-note {
     margin-top: 1.5rem;
     padding: 1.2rem;
-    background-color: #fff3cd;
-    border: 1px solid #ffeaa7;
+    background-color: var(--status-warning-bg);
+    border: 1px solid var(--status-warning-border);
     border-radius: 8px;
     border-left: 4px solid #fdcb6e;
 }
@@ -145,6 +230,7 @@
     overflow-x: auto;
 }
 
+/* Variables / fichiers YAML */
 .variables-example {
     margin-top: 1.5rem;
 }
@@ -157,10 +243,10 @@
 }
 
 .variable-file {
-    background-color: #f8f9fa;
+    background-color: var(--bg-section-light);
     border-radius: 8px;
     padding: 1rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-soft);
 }
 
 .variable-file h6 {
@@ -172,7 +258,7 @@
 
 .variable-file pre {
     margin: 0;
-    background-color: #2d2d2d;
+    background-color: var(--code-bg);
     padding: 0.6rem;
     border-radius: 4px;
 }
@@ -181,7 +267,220 @@
     font-size: 0.75rem;
 }
 
-/* Styles pour la coloration syntaxique avec Prism */
+/* === SECTION PYTHON & WEB SCRAPING === */
+.python-section {
+    background-color: var(--bg-section-light);
+    padding: 60px 20px;
+    border-radius: 8px;
+    margin: 40px 0;
+}
+
+.python-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.python-explanation {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.python-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.python-keywords span {
+    background-color: #e9ecef;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Modules et exemples */
+.python-modules,
+.web-scraping-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.python-module,
+.scraping-example {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.python-module h4,
+.scraping-example h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+/* Bloc structure de dossier */
+.folder-structure {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-family: monospace;
+}
+
+.folder-structure .folder {
+    color: #63b3ed;
+}
+
+.folder-structure .file {
+    color: #68d391;
+}
+
+/* Note "web scraping" */
+.note {
+    background-color: var(--status-warning-bg);
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.note h5 {
+    color: #856404;
+    margin-top: 0;
+}
+
+/* === SECTION COMMANDES UTILES : MENU + CARTES === */
+.commandes-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commandes-menu {
+    width: 280px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.commandes-menu h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.menu-categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-categories li {
+    margin-bottom: 8px;
+}
+
+.menu-categories a {
+    display: block;
+    padding: 12px 15px;
+    background-color: var(--bg-section-light);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.menu-categories a:hover,
+.menu-categories a.active {
+    background-color: var(--secondary-color);
+    color: var(--text-on-primary);
+    transform: translateX(5px);
+    border-left-color: #2980b9;
+}
+
+.commandes-content {
+    flex: 1;
+}
+
+.commande-categorie {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 100px;
+}
+
+.commande-categorie h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.4rem;
+}
+
+.commande-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.commande-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.commande-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: monospace;
+    background-color: var(--bg-section-light);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.commande-item p {
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Spécifique DevOps */
+#shell-devops .commande-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+#shell-devops .commande-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* === COLORATION SYNTAXIQUE PRISM (personnalisation légère) === */
 .token.comment {
     color: #6a9955;
 }
@@ -202,10 +501,10 @@
     color: #dcdcaa;
 }
 
-/* Responsive pour DevOps */
+/* === RESPONSIVE POUR LES SECTIONS DEVOPS / PYTHON / COMMANDES === */
 @media (min-width: 768px) {
     .projet-automation {
-        padding: 2rem;
+        padding: 2rem 0;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
     }
@@ -231,60 +530,49 @@
     }
 }
 
-@media (min-width: 1024px) {
-    .projet-automation {
-        gap: 3rem;
+@media (max-width: 768px) {
+    .commandes-container {
+        flex-direction: column;
     }
     
-    .code-header {
-        padding: 0.75rem 1rem;
+    .commandes-menu {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
     }
     
-    .code-title {
-        font-size: 0.9rem;
+    .menu-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
     
-    .copy-btn {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+    .menu-categories li {
+        flex: 1;
+        min-width: 150px;
+        margin-bottom: 0;
+    }
+    
+    .menu-categories a {
+        text-align: center;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .menu-categories a:hover,
+    .menu-categories a.active {
+        border-left: none;
+        border-bottom-color: #2980b9;
+        transform: translateY(-2px);
     }
 }
 
-/* Styles pour les nouvelles commandes shell */
-.commande-categorie {
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-.commande-item {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.commande-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.commande-item code {
-    background-color: #f8f9fa;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #e83e8c;
-    display: block;
-    margin-bottom: 5px;
-    border-left: 3px solid #3498db;
-}
-
-.commande-item span {
-    color: #6c757d;
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 5px;
+@media (max-width: 480px) {
+    .menu-categories {
+        flex-direction: column;
+    }
+    
+    .menu-categories li {
+        min-width: auto;
+    }
 }
