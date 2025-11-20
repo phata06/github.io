@@ -381,6 +381,8 @@
     margin-right: auto;
 }
 
+.mnd {color: black}
+
 .commandes-menu {
     width: 280px;
     background: var(--bg-card);
