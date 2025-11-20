@@ -1,0 +1,339 @@
+<section id="commande" class="commandes-section">
+    <h2>Commandes Utiles</h2>
+    
+    <div class="commandes-container">
+        <!-- Menu latéral -->
+        <div class="commandes-menu">
+            <h3>Catégories</h3>
+            <ul class="menu-categories">
+                <li><a href="#shell-devops" class="menu-link active" onclick="setActiveCategory('shell-devops')">Commandes Shell DevOps</a></li>
+                <li><a href="#scripting-bash" class="menu-link" onclick="setActiveCategory('scripting-bash')">Scripting Bash</a></li>
+                <li><a href="#supprimer-user" class="menu-link" onclick="setActiveCategory('supprimer-user')">Supprimer Utilisateur</a></li>
+                <li><a href="#commandes-sed" class="menu-link" onclick="setActiveCategory('commandes-sed')">Commandes Sed</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenu des commandes -->
+        <div class="commandes-content">
+            <!-- Commandes Shell DevOps -->
+            <div id="shell-devops" class="commande-categorie">
+                <h3>Commandes Shell utiles pour les DevOps</h3>
+                <p>Mettre le shebang <code>#!/usr/bin/bash</code> au début de chaque fichier bash</p>
+                
+                <div class="commande-item">
+                    <h4>ls</h4>
+                    <p>Lister les fichiers du répertoire courant</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>ls -ltr</h4>
+                    <p>Lister les fichiers avec détails et tri par date</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>man commande</h4>
+                    <p>Afficher le manuel d'une commande ex: man ls</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>touch nom_fichier</h4>
+                    <p>Créer un fichier</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>mkdir nom_dossier</h4>
+                    <p>Créer un dossier</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>df -h</h4>
+                    <p>Voir la taille du disque</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>top</h4>
+                    <p>Afficher les processus en cours</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>nproc</h4>
+                    <p>Afficher le nombre de CPU</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>free -g</h4>
+                    <p>Afficher la mémoire disponible</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>ps</h4>
+                    <p>Processus actifs</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>ps -ef</h4>
+                    <p>Lister tous les processus actifs</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>ps -ef | grep chaine_a_chercher</h4>
+                    <p>Filtrer sur un processus particulier</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>date</h4>
+                    <p>Afficher la date</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>kill -9 id_processus</h4>
+                    <p>Tuer un processus via son id</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>find / -name chaine_a_chercher</h4>
+                    <p>find /home/user -name myScript.sh</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>curl</h4>
+                    <p>Télécharger des contenus web</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>wget</h4>
+                    <p>Télécharger des contenus web</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>set -x</h4>
+                    <p>Afficher toutes les commandes (mode debug)</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>set -e</h4>
+                    <p>Arrêter si une erreur apparaît sur une ligne</p>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>set -o pipefail</h4>
+                    <p>Arrêter même s'il y a une erreur sur une ligne</p>
+                </div>
+            </div>
+
+            <!-- Scripting Bash - Conditions et Boucles -->
+            <div id="scripting-bash" class="commande-categorie">
+                <h3>Scripting Bash - Conditions et Boucles</h3>
+                
+                <div class="commande-item">
+                    <h4>Conditions en Bash</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Exemple de condition</span>
+                            <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
+                        </div>
+                        <pre id="code-bash-condition"><code class="language-bash">a=1
+b=2
+if [ "$a" -gt "$b" ]
+then
+    echo "A est plus grand que B"
+else
+    echo "B est plus grand que A"
+fi</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Boucle for en Bash</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Exemple de boucle for</span>
+                            <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+                        </div>
+                        <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
+do
+    echo "Itération: $i"
+done</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supprimer un utilisateur linux -->
+            <div id="supprimer-user" class="commande-categorie">
+                <h3>Supprimer un utilisateur linux</h3>
+                <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
+                    Voici les principales 👇</p>
+                <div class="commande-item">
+                    <h4>sudo userdel nom_utilisateur</h4>
+                    <p>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</p>
+                </div>
+                <div class="commande-item">
+                    <h4>sudo userdel -r nom_utilisateur</h4>
+                    <p>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</p>
+                </div>
+                <div class="commande-item">
+                    <h4>sudo userdel -f nom_utilisateur</h4>
+                    <p>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</p>
+                </div>
+                <div class="commande-item">
+                    <h4>sudo groupdel nom_utilisateur</h4>
+                    <p>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</p>
+                </div>
+            </div>
+
+            <!-- Commandes Sed -->
+            <div id="commandes-sed" class="commande-categorie">
+                <h3>Commandes Sed - Traitement de texte avancé</h3>
+                
+                <div class="commande-item">
+                    <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Extraction de lignes spécifiques</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
+                        </div>
+                        <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
+sed -n '1p' voiture.txt
+
+# Extraire et afficher les lignes 2 et 4
+sed -n '2p;4p' voiture.txt
+
+# Extraire et afficher les lignes de 2 à 4
+sed -n '2,4p' voiture.txt
+
+# Extraire et afficher les lignes par saut de 2
+sed -n '1~2p' voiture.txt
+
+# Extraire et afficher la dernière ligne
+sed -n '$p' voiture.txt
+
+# Extraire et afficher de la ligne 3 jusqu'à la fin
+sed -n '3,$p' voiture.txt</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Suppression de lignes</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Suppression sans modifier le fichier</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+                        </div>
+                        <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
+sed '1d' voiture.txt
+
+# Supprimer les lignes 2 et 5 et afficher le reste
+sed '2d;5d' voiture.txt
+
+# Supprimer les lignes de 2 à 4 et afficher le reste
+sed '2,4d' voiture.txt
+
+# Supprimer les lignes par saut de 2 et afficher le reste
+sed '1~2d' voiture.txt</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Modification directe du fichier (option -i)</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Commandes avec modification en place</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+                        </div>
+                        <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
+sed -i '1d' voiture.txt
+
+# Faire un backup et supprimer les lignes commençant par Ford
+sed -i.back '/^Ford/d' voiture.txt
+
+# Supprimer les lignes vides
+sed -i '/^$/d' voiture.txt</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Recherche avec Sed</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Recherche et filtrage</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+                        </div>
+                        <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
+sed -n '/Allemagne$/p' voiture.txt
+
+# Rechercher et afficher les lignes commençant par "F"
+sed -n '/^F/p' voiture.txt
+
+# Supprimer les lignes se terminant par "500"
+sed '/500$/d' voiture.txt</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Recherche et substitution</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Remplacement de texte</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+                        </div>
+                        <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
+sed -i 's/Ford/Toyota/' voiture.txt
+
+# Remplacer les deux premiers caractères par "Vehicule"
+sed 's/^../Vehicule /' voiture.txt
+
+# Dans les lignes contenant "neuf", remplacer "blanc" par "noire"
+sed '/neuf/s/blanc/noire/'
+
+# Concaténation avec le symbole &
+echo "Je suis un admin linux" | sed 's/admin/&istrateur/'
+
+# Remplacer "rice" par "eur" avec groupes de capture
+echo "Je suis directrice" | sed 's/\(direct\)rice/\1eur/'</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Insertion de lignes</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Ajout de contenu</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+                        </div>
+                        <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
+sed -i '1i Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne à la fin du fichier
+sed -i '$a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne après la deuxième ligne
+sed -i '2a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer "Mercedes" avant chaque ligne contenant "Ford"
+sed '/Ford/ i Mercedes' voiture.txt
+
+# Insérer "Mercedes" après chaque ligne contenant "Ford"
+sed '/Ford/ a Mercedes' voiture.txt</code></pre>
+                    </div>
+                </div>
+                
+                <div class="commande-item">
+                    <h4>Combinaison de commandes</h4>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">Utilisation de l'option -e</span>
+                            <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+                        </div>
+                        <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
+sed -e 's/Linux/System-Linux/' -e 's/Windows/System-Windows/' fichier.txt
+
+# Remplacer avec et sans l'option globale (g)
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/'
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

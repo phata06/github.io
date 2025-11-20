@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndiaye Moustapha - Ingénieur DevOps | Cloud, Automation, Infrastructure</title>
+    <meta name="description" content="Portfolio de Ndiaye Moustapha - Ingénieur DevOps passionné par l'automatisation, le cloud et les infrastructures scalables">
+    
+    <!-- CSS global -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS DevOps / sections techniques -->
+    <link rel="stylesheet" href="css/devops.css">
+    
+    <!-- Prism.js pour la coloration syntaxique -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Moustapha Ndiaye</div>
+            
+            <!-- Menu Hamburger -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
+                <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
+                <li><a href="#python" onclick="closeMenu()">Script Python</a></li>
+                <li><a href="#web-scraping" onclick="closeMenu()">Web Scraping</a></li>
+                <li><a href="#competences" onclick="closeMenu()">Compétences</a></li>
+                <li><a href="#commande" onclick="closeMenu()">Commandes utiles</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                <!-- Nouveau lien Mon CV -->
+                <li><a href="mnd.html" target="_blank" onclick="closeMenu()">Mon CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Ndiaye Moustapha</h1>
+            <h2>Ingénieur DevOps</h2>
+            <p>🔧 Automation | ☁️ Cloud Native | 🚀 Scalability | 🔒 DevSecOps</p>
+            <div class="hero-technologies">
+                <span>Ansible</span>
+                <span>Kubernetes</span>
+                <span>Terraform</span>
+                <span>Docker</span>
+                <span>SQL</span>
+                <span>Python</span>
+                <span>Bash</span>
+                <span>JavaScript</span>
+            </div>
+            <a href="#projets" class="btn">Voir mes réalisations techniques</a>
+        </div>
+    </section>
+
+    <!-- Section Projets (pliable) -->
+    <div class="collapsible-section">
+        <div id="projets" class="collapsible-header" onclick="toggleSection('projets-content', this)">
+            <h2>Automatiser la création d'utilisateur 
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    Ansible
+                </span>
+            </h2>
+            <span class="collapsible-icon">▼</span>
+        </div>
+        <div id="projets-content" class="collapsible-content">
+            <div class="projet-automation">
+                <div class="automation-description">
+                    <h3>Playbook Ansible pour la création d'utilisateurs sécurisée</h3>
+                    <p>Ce playbook Ansible permet d'automatiser la création d'utilisateurs avec des paramètres de sécurité avancés, gestion des clés SSH et utilisation de variables externalisées pour une meilleure sécurité.</p>
+                    
+                    <div class="automation-features">
+                        <h4>Fonctionnalités principales :</h4>
+                        <ul>
+                            <li>Création d'utilisateur avec variables externalisées</li>
+                            <li>Génération automatique de clé SSH</li>
+                            <li>Ajout aux groupes appropriés (sudo)</li>
+                            <li>Configuration du shell par défaut</li>
+                            <li>Gestion de l'expiration du compte</li>
+                            <li>Avertissement d'expiration du mot de passe</li>
+                            <li>Utilisation de variables sécurisées</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">playbook-create-user.yml</span>
+                        <button class="copy-btn" onclick="copyCode('code-ansible')">Copier</button>
+                    </div>
+                    <pre id="code-ansible"><code class="language-yaml">---
+- name: Add a new user
+  hosts: all
+  become: yes
+  vars_files:
+    - vars/secrets.yml
+    - group_vars/all.yml
+  tasks:
+    - name: Create a user
+      ansible.builtin.user:
+        name: "{{ new_user }}"
+        password: "{{ new_password }}"
+        groups: sudo
+        shell: /bin/bash
+        create_home: yes
+        expires: 1798851600  # Cette ligne permet de définir une date d'expiration du compte
+        # expires: -1   # Cette ligne commentée permets de désactiver la date d'expiration
+        password_expire_warn: 7  # Avertir 7 jours avant expiration
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa</code></pre>
+                </div>
+                
+                <div class="automation-explanation">
+                    <h4>Explication du code :</h4>
+                    <div class="explanation-grid">
+                        <div class="explanation-item">
+                            <h5>Variables externalisées</h5>
+                            <p>Utilisation de fichiers de variables séparés (secrets.yml et group_vars/all.yml) pour une meilleure sécurité et modularité.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Génération de clé SSH</h5>
+                            <p>Création automatique d'une paire de clés SSH RSA 2048 bits pour l'utilisateur.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Mot de passe haché</h5>
+                            <p>La variable <code>new_password</code> doit contenir un mot de passe déjà haché avec l'algorithme SHA-512.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h5>Sécurité renforcée</h5>
+                            <p>Expiration du compte configurée et avertissements pour le changement de mot de passe.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="security-note">
+                        <h5>⚠️ Important : Hachage du mot de passe</h5>
+                        <p>Le mot de passe doit être préalablement haché avant d'être utilisé dans le playbook. Voici comment générer un hash SHA-512 :</p>
+                        <div class="code-example">
+                            <code>python3 -c "import crypt; print(crypt.crypt('votre_mot_de_passe', crypt.mksalt(crypt.METHOD_SHA512)))"</code>
+                        </div>
+                        <p>Le résultat doit être stocké dans le fichier <code>vars/secrets.yml</code> :</p>
+                        <div class="code-example">
+                            <code>new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code>
+                        </div>
+                    </div>
+                    
+                    <div class="variables-example">
+                        <h5>Structure des fichiers de variables :</h5>
+                        <div class="variables-grid">
+                            <div class="variable-file">
+                                <h6>group_vars/all.yml</h6>
+                                <pre><code class="language-yaml">new_user: "taph"</code></pre>
+                            </div>
+                            <div class="variable-file">
+                                <h6>vars/secrets.yml</h6>
+                                <pre><code class="language-yaml"># Mot de passe haché SHA-512
+new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Script Python (pliable) -->
+    <div class="collapsible-section">
+        <div id="python" class="collapsible-header" onclick="toggleSection('python-content', this)">
+            <h2>Script Python - Modules et Packages
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    Développement
+                </span>
+            </h2>
+            <span class="collapsible-icon">▼</span>
+        </div>
+        <div id="python-content" class="collapsible-content">
+            <div class="python-content">
+                <div class="python-explanation">
+                    <h3>Les modules et les packages</h3>
+                    <p>En programmation, on a le plus souvent besoin d'utiliser le code écrit par d'autres développeurs pour effectuer des actions ou résoudre des problèmes.</p>
+                    <p>C'est là qu'on va utiliser les modules et les packages. L'utilisation des modules et packages nous fait gagner beaucoup de temps.</p>
+                    
+                    <div class="python-keywords">
+                        <span>module</span>
+                        <span>package</span>
+                        <span>import</span>
+                        <span>from</span>
+                        <span>pip</span>
+                    </div>
+                    
+                    <p>Ceci est un petit rappel des mots clés :</p>
+                    <ul>
+                        <li><strong>module</strong>: fichier avec du code Python</li>
+                        <li><strong>package</strong>: dossier contenant les modules</li>
+                        <li><strong>import</strong>: utilisé pour inclure des modules et packages externes dans notre code</li>
+                        <li><strong>from</strong>: importer directement un élément d'un module</li>
+                        <li><strong>pip</strong>: gestionnaire de packages Python qui permet de télécharger, installer et gérer des packages</li>
+                    </ul>
+                </div>
+                
+                <div class="python-modules">
+                    <div class="python-module">
+                        <h4>Les modules</h4>
+                        <p>On crée notre répertoire de travail nommé DevOps. À l'intérieur on crée un fichier operations.py et y mettre le code suivant :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">operations.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-module')">Copier</button>
+                            </div>
+                            <pre id="code-module"><code class="language-python">def somme(a, b):
+    return a + b
+
+def division(a, b):
+    return a / b
+
+def soustraction(a, b):
+    return a - b
+
+def multiplication(a, b):
+    return a * b</code></pre>
+                        </div>
+                        
+                        <p>Dans notre répertoire, on crée un fichier main.py et y mettre le code suivant :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-main')">Copier</button>
+                            </div>
+                            <pre id="code-main"><code class="language-python">from operations import somme, soustraction, division, multiplication
+
+print("Le résultat de la somme est ", somme(2, 6))
+print("Le résultat de la soustraction est ", soustraction(10, 3))
+print("Le résultat de la multiplication est ", multiplication(2, 4))
+print("Le résultat de la division est ", division(24, 2))</code></pre>
+                        </div>
+                        
+                        <p>On a importé les fonctions qui sont dans le module operations.</p>
+                    </div>
+                    
+                    <div class="python-module">
+                        <h4>Les packages</h4>
+                        <p>On va créer des packages. On crée un dossier calculateur dans notre répertoire DevOps. On déplace le fichier operations.py dans le dossier calculateur. On crée un fichier __init__.py (qui peut être vide) dans calculateur.</p>
+                        
+                        <div class="folder-structure">
+                            <div class="folder">DevOps/</div>
+                            <div class="file">├── main.py</div>
+                            <div class="folder">└── calculateur/</div>
+                            <div class="file">    ├── __init__.py</div>
+                            <div class="file">    └── operations.py</div>
+                        </div>
+                        
+                        <p>Dans main.py, il faut maintenant passer par le package calculateur pour faire l'import comme suit :</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py (avec package)</span>
+                                <button class="copy-btn" onclick="copyCode('code-package')">Copier</button>
+                            </div>
+                            <pre id="code-package"><code class="language-python">from calculateur.operations import somme, soustraction, division, multiplication
+
+print("Le résultat de la somme est ", somme(2, 6))
+print("Le résultat de la soustraction est ", soustraction(10, 3))
+print("Le résultat de la multiplication est ", multiplication(2, 4))
+print("Le résultat de la division est ", division(24, 2))</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Web Scraping (pliable) -->
+    <div class="collapsible-section">
+        <div id="web-scraping" class="collapsible-header" onclick="toggleSection('web-scraping-content', this)">
+            <h2>Extraction de données web avec Python
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    BeautifulSoup
+                </span>
+            </h2>
+            <span class="collapsible-icon">▼</span>
+        </div>
+        <div id="web-scraping-content" class="collapsible-content">
+            <div class="python-content">
+                <div class="python-explanation">
+                    <h3>Extraction de données web avec BeautifulSoup</h3>
+                    <p>Dans cette partie, nous allons faire l'extraction de données web.</p>
+                    <p>On ne va pas parcourir toutes les fonctionnalités de BeautifulSoup. On va extraire des données depuis la page web mon CV accessible via l'onglet mon CV.</p>
+                    
+                    <div class="note">
+                        <h5>📝 Note importante</h5>
+                        <p>Pour utiliser BeautifulSoup, il faut d'abord l'installer :</p>
+                        <code>pip install beautifulsoup4</code>
+                        <p>Et importer le module en haut du fichier main.py :</p>
+                        <code>from bs4 import BeautifulSoup</code>
+                    </div>
+                </div>
+                
+                <div class="web-scraping-grid">
+                    <div class="scraping-example">
+                        <h4>Extraire le titre de la page</h4>
+                        <p>Le code suivant permet d'extraire et d'afficher le titre de la page</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-title')">Copier</button>
+                            </div>
+                            <pre id="code-title"><code class="language-python"># Récupérer et afficher le titre de la page accessible via l'onglet mon cv (mnd.html) 
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data.title.string
+    print(data.title.string)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="scraping-example">
+                        <h4>Extraire tous les titres de niveau h2</h4>
+                        <p>Le code suivant permet d'extraire tous les titres de la page qui sont de niveau h2</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-h2')">Copier</button>
+                            </div>
+                            <pre id="code-h2"><code class="language-python"># permet de récupérer et d'afficher tous les éléments h2 avec find_all
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data_h2 = data.find_all('h2') 
+    for element in data_h2:
+        print(element.string)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="scraping-example">
+                        <h4>Extraire un élément via son id</h4>
+                        <p>Le code suivant permet d'extraire et d'afficher un élément via son id (CSS)</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-id')">Copier</button>
+                            </div>
+                            <pre id="code-id"><code class="language-python"># permet de récupérer l'élément qui a un id=lien1
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    element = data.find(id="lien1").string
+    print(element)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="scraping-example">
+                        <h4>Extraire un ou des élément(s) via sa class</h4>
+                        <p>Le code suivant permet d'extraire et d'afficher tous les éléments de la page via class (CSS)</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-class')">Copier</button>
+                            </div>
+                            <pre id="code-class"><code class="language-python"># permet de récupérer tous les éléments avec la class "title"
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data = data.find_all(class_="title")
+    for element in data:
+        print(element.string)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="scraping-example">
+                        <h4>Extraire les éléments d'une balise</h4>
+                        <p>Le code suivant permet de récupérer et d'afficher tous les éléments de balise &lt;li&gt;</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-li')">Copier</button>
+                            </div>
+                            <pre id="code-li"><code class="language-python">with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data = data.find_all("li")
+    for e in data:
+        print(e.string)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="scraping-example">
+                        <h4>Extraire les éléments d'une balise en spécifiant une class</h4>
+                        <p>Le code suivant permet de récupérer et d'afficher tous les éléments de balise &lt;li&gt; qui ont la classe de valeur "skill-item"</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">main.py</span>
+                                <button class="copy-btn" onclick="copyCode('code-li-class')">Copier</button>
+                            </div>
+                            <pre id="code-li-class"><code class="language-python"># Recuperer les elements de la balise &lt;li&gt; et qui ont une class="skill-item"
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    res = data.select("li", class_="skill-item")
+    for element in res:
+        print(element.string)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Compétences -->
+    <section id="competences">
+        <h2>Compétences Techniques</h2>
+        <div class="competences-grid">
+            <div class="categorie">
+                <h3>Cloud & Infrastructure</h3>
+                <ul>
+                    <li>AWS / Azure / GCP</li>
+                    <li>Docker & Conteneurisation</li>
+                    <li>Kubernetes & Orchestration</li>
+                    <li>Terraform & Infrastructure as Code</li>
+                    <li>Ansible / Puppet / Chef</li>
+                </ul>
+            </div>
+            <div class="categorie">
+                <h3>CI/CD & Automation</h3>
+                <ul>
+                    <li>Jenkins / GitLab CI</li>
+                    <li>GitHub Actions</li>
+                    <li>ArgoCD / Flux</li>
+                    <li>Scripting (Bash, Python)</li>
+                    <li>Quality Gates</li>
+                </ul>
+            </div>
+            <div class="categorie">
+                <h3>Monitoring & Sécurité</h3>
+                <ul>
+                    <li>Prometheus / Grafana</li>
+                    <li>ELK Stack</li>
+                    <li>DevSecOps</li>
+                    <li>Vault / Secrets Management</li>
+                    <li>Sécurité Cloud</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Commandes utiles -->
+    <section id="commande" class="commandes-section">
+        <h2>Commandes Utiles</h2>
+        
+        <div class="commandes-container">
+            <!-- Menu latéral -->
+            <div class="commandes-menu">
+                <h3>Catégories</h3>
+                <ul class="menu-categories">
+                    <li><a href="#shell-devops" class="menu-link active" onclick="setActiveCategory('shell-devops')">Commandes Shell DevOps</a></li>
+                    <li><a href="#scripting-bash" class="menu-link" onclick="setActiveCategory('scripting-bash')">Scripting Bash</a></li>
+                    <li><a href="#supprimer-user" class="menu-link" onclick="setActiveCategory('supprimer-user')">Supprimer Utilisateur</a></li>
+                    <li><a href="#commandes-sed" class="menu-link" onclick="setActiveCategory('commandes-sed')">Commandes Sed</a></li>
+                </ul>
+            </div>
+
+            <!-- Contenu des commandes -->
+            <div class="commandes-content">
+                <!-- Commandes Shell DevOps -->
+                <div id="shell-devops" class="commande-categorie">
+                    <h3>Commandes Shell utiles pour les DevOps</h3>
+                    <p>Mettre le shebang <code>#!/usr/bin/bash</code> au début de chaque fichier bash</p>
+                    
+                    <div class="commande-item">
+                        <h4>ls</h4>
+                        <p>Lister les fichiers du répertoire courant</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ls -ltr</h4>
+                        <p>Lister les fichiers avec détails et tri par date</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>man commande</h4>
+                        <p>Afficher le manuel d'une commande ex: man ls</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>touch nom_fichier</h4>
+                        <p>Créer un fichier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>mkdir nom_dossier</h4>
+                        <p>Créer un dossier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>df -h</h4>
+                        <p>Voir la taille du disque</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>top</h4>
+                        <p>Afficher les processus en cours</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>nproc</h4>
+                        <p>Afficher le nombre de CPU</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>free -g</h4>
+                        <p>Afficher la mémoire disponible</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps</h4>
+                        <p>Processus actifs</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps -ef</h4>
+                        <p>Lister tous les processus actifs</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>ps -ef | grep chaine_a_chercher</h4>
+                        <p>Filtrer sur un processus particulier</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>date</h4>
+                        <p>Afficher la date</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>kill -9 id_processus</h4>
+                        <p>Tuer un processus via son id</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>find / -name chaine_a_chercher</h4>
+                        <p>find /home/user -name myScript.sh</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>curl</h4>
+                        <p>Télécharger des contenus web</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>wget</h4>
+                        <p>Télécharger des contenus web</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -x</h4>
+                        <p>Afficher toutes les commandes (mode debug)</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -e</h4>
+                        <p>Arrêter si une erreur apparaît sur une ligne</p>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>set -o pipefail</h4>
+                        <p>Arrêter même s'il y a une erreur sur une ligne</p>
+                    </div>
+                </div>
+
+                <!-- Scripting Bash - Conditions et Boucles -->
+                <div id="scripting-bash" class="commande-categorie">
+                    <h3>Scripting Bash - Conditions et Boucles</h3>
+                    
+                    <div class="commande-item">
+                        <h4>Conditions en Bash</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Exemple de condition</span>
+                                <button class="copy-btn" onclick="copyCode('code-bash-condition')">Copier</button>
+                            </div>
+                            <pre id="code-bash-condition"><code class="language-bash">a=1
+b=2
+if [ "$a" -gt "$b" ]
+then
+    echo "A est plus grand que B"
+else
+    echo "B est plus grand que A"
+fi</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Boucle for en Bash</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Exemple de boucle for</span>
+                                <button class="copy-btn" onclick="copyCode('code-bash-loop')">Copier</button>
+                            </div>
+                            <pre id="code-bash-loop"><code class="language-bash">for ((i=1; i<=5; i++))
+do
+    echo "Itération: $i"
+done</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supprimer un utilisateur linux -->
+                <div id="supprimer-user" class="commande-categorie">
+                    <h3>Supprimer un utilisateur linux</h3>
+                    <p>Pour supprimer un utilisateur sous Linux, plusieurs commandes existent selon le niveau de nettoyage que tu veux faire (compte, répertoire personnel, fichiers, etc.).<br>
+                        Voici les principales 👇</p>
+                    <div class="commande-item">
+                        <h4>sudo userdel nom_utilisateur</h4>
+                        <p>Cela supprime l'utilisateur du système, mais laisse son répertoire personnel et ses fichiers intacts.</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo userdel -r nom_utilisateur</h4>
+                        <p>Le -r (ou --remove) supprime également : le répertoire personnel de l'utilisateur (/home/nom_utilisateur), la boîte mail associée (si elle existe)</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo userdel -f nom_utilisateur</h4>
+                        <p>⚠️ À utiliser avec précaution — cela peut laisser des processus orphelins.</p>
+                    </div>
+                    <div class="commande-item">
+                        <h4>sudo groupdel nom_utilisateur</h4>
+                        <p>Si l'utilisateur a un groupe portant le même nom, tu peux le supprimer avec la commande ci-dessus</p>
+                    </div>
+                </div>
+
+                <!-- Commandes Sed -->
+                <div id="commandes-sed" class="commande-categorie">
+                    <h3>Commandes Sed - Traitement de texte avancé</h3>
+                    
+                    <div class="commande-item">
+                        <h4>NB: L'exécution de ces commandes n'affecte pas le fichier d'origine voiture.txt</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Extraction de lignes spécifiques</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-extract')">Copier</button>
+                            </div>
+                            <pre id="code-sed-extract"><code class="language-bash"># Extraire et afficher la première ligne
+sed -n '1p' voiture.txt
+
+# Extraire et afficher les lignes 2 et 4
+sed -n '2p;4p' voiture.txt
+
+# Extraire et afficher les lignes de 2 à 4
+sed -n '2,4p' voiture.txt
+
+# Extraire et afficher les lignes par saut de 2
+sed -n '1~2p' voiture.txt
+
+# Extraire et afficher la dernière ligne
+sed -n '$p' voiture.txt
+
+# Extraire et afficher de la ligne 3 jusqu'à la fin
+sed -n '3,$p' voiture.txt</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Suppression de lignes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Suppression sans modifier le fichier</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-delete')">Copier</button>
+                            </div>
+                            <pre id="code-sed-delete"><code class="language-bash"># Supprimer la première ligne et afficher le reste
+sed '1d' voiture.txt
+
+# Supprimer les lignes 2 et 5 et afficher le reste
+sed '2d;5d' voiture.txt
+
+# Supprimer les lignes de 2 à 4 et afficher le reste
+sed '2,4d' voiture.txt
+
+# Supprimer les lignes par saut de 2 et afficher le reste
+sed '1~2d' voiture.txt</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Modification directe du fichier (option -i)</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Commandes avec modification en place</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-inplace')">Copier</button>
+                            </div>
+                            <pre id="code-sed-inplace"><code class="language-bash"># Supprimer la première ligne directement dans le fichier
+sed -i '1d' voiture.txt
+
+# Faire un backup et supprimer les lignes commençant par Ford
+sed -i.back '/^Ford/d' voiture.txt
+
+# Supprimer les lignes vides
+sed -i '/^$/d' voiture.txt</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Recherche avec Sed</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Recherche et filtrage</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-search')">Copier</button>
+                            </div>
+                            <pre id="code-sed-search"><code class="language-bash"># Rechercher et afficher les lignes se terminant par "Allemagne"
+sed -n '/Allemagne$/p' voiture.txt
+
+# Rechercher et afficher les lignes commençant par "F"
+sed -n '/^F/p' voiture.txt
+
+# Supprimer les lignes se terminant par "500"
+sed '/500$/d' voiture.txt</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Recherche et substitution</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Remplacement de texte</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-replace')">Copier</button>
+                            </div>
+                            <pre id="code-sed-replace"><code class="language-bash"># Remplacer "Ford" par "Toyota" dans le fichier
+sed -i 's/Ford/Toyota/' voiture.txt
+
+# Remplacer les deux premiers caractères par "Vehicule"
+sed 's/^../Vehicule /' voiture.txt
+
+# Dans les lignes contenant "neuf", remplacer "blanc" par "noire"
+sed '/neuf/s/blanc/noire/' voiture.txt
+
+# Concaténation avec le symbole &
+echo "Je suis un admin linux" | sed 's/admin/&istrateur/'
+
+# Remplacer "rice" par "eur" avec groupes de capture
+echo "Je suis directrice" | sed 's/\(direct\)rice/\1eur/'</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Insertion de lignes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Ajout de contenu</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-insert')">Copier</button>
+                            </div>
+                            <pre id="code-sed-insert"><code class="language-bash"># Insérer une ligne en haut du fichier
+sed -i '1i Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne à la fin du fichier
+sed -i '$a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer une ligne après la deuxième ligne
+sed -i '2a Ligne type_voiture couleur nombre statut prix pays kilométrage' voiture.txt
+
+# Insérer "Mercedes" avant chaque ligne contenant "Ford"
+sed '/Ford/ i Mercedes' voiture.txt
+
+# Insérer "Mercedes" après chaque ligne contenant "Ford"
+sed '/Ford/ a Mercedes' voiture.txt</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="commande-item">
+                        <h4>Combinaison de commandes</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">Utilisation de l'option -e</span>
+                                <button class="copy-btn" onclick="copyCode('code-sed-combine')">Copier</button>
+                            </div>
+                            <pre id="code-sed-combine"><code class="language-bash"># Combiner plusieurs commandes sur le même fichier
+sed -e 's/Linux/System-Linux/' -e 's/Windows/System-Windows/' fichier.txt
+
+# Remplacer avec et sans l'option globale (g)
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/'
+echo "Linux Linux Linux" | sed 's/Linux/System-Linux/g'</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-moi</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>📧 <strong>Email:</strong> votre.email@domain.com</p>
+                <p>📱 <strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+                <p>📍 <strong>Localisation:</strong> Ville, Pays</p>
+                <div class="social-links">
+                    <a href="https://github.com/phata06" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/votreprofil" target="_blank">LinkedIn</a>
+                    <a href="CV-VotreNom.pdf" download>Télécharger mon CV</a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Votre nom" required>
+                <input type="email" placeholder="Votre email" required>
+                <textarea placeholder="Votre message" rows="5" required></textarea>
+                <button type="submit">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 [Votre Nom]. Tous droits réservés.</p>
+        <p class="footer-note">
+            Ce code est visible à titre de démonstration. Toute modification ou reproduction est interdite sans autorisation.
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script>
+        // Smooth scroll pour la navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Ne pas empêcher le comportement par défaut pour les liens externes (comme mnd.html)
+                if (!this.getAttribute('href').includes('.html') || this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+                    
+                    // Si c'est une section pliable, on l'ouvre d'abord
+                    if (target && target.classList.contains('collapsible-header')) {
+                        const contentId = targetId + '-content';
+                        const content = document.getElementById(contentId);
+                        
+                        // Ouvrir la section si elle est fermée
+                        if (!content.classList.contains('active')) {
+                            toggleSection(contentId, target);
+                        }
+                        
+                        // Attendre un peu que l'animation d'ouverture commence puis scroller
+                        setTimeout(() => {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 100);
+                    } else if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les cartes de projet
+        document.querySelectorAll('.projet-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+
+        // Gestion du formulaire de contact (basique)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Je vous répondrai rapidement.');
+            this.reset();
+        });
+
+        // Fonction pour copier le code
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Animation de confirmation
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Copié !';
+            btn.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+
+        // Observer les catégories de commandes, modules Python et exemples
+        document.querySelectorAll('.commande-categorie, .python-module, .scraping-example').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+
+        // Fonction pour ouvrir/fermer les sections pliables
+        function toggleSection(contentId, header) {
+            const content = document.getElementById(contentId);
+            const isActive = content.classList.contains('active');
+            
+            if (isActive) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Fonction pour le menu hamburger
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Empêcher la propagation sur le hamburger
+        document.querySelector('.hamburger').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Gestion du redimensionnement
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // Menu des commandes : clic sur une catégorie
+        function setActiveCategory(categoryId) {
+            // Retirer la classe active de tous les liens
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Ajouter la classe active au lien cliqué
+            document.querySelectorAll('.menu-link').forEach(link => {
+                if (link.getAttribute('href') === `#${categoryId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Faire défiler jusqu'à la catégorie
+            const targetElement = document.getElementById(categoryId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Observer pour mettre à jour le menu actif lors du défilement
+        const observerCommandes = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.menu-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '-100px 0px -100px 0px'
+        });
+
+        // Observer toutes les catégories de commandes
+        document.querySelectorAll('.commande-categorie').forEach(categorie => {
+            observerCommandes.observe(categorie);
+        });
+
+        // Initialiser la première catégorie comme active
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCategory = document.querySelector('.commande-categorie');
+            if (firstCategory) {
+                const firstLink = document.querySelector(`.menu-link[href="#${firstCategory.id}"]`);
+                if (firstLink) {
+                    firstLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<div class="collapsible-section">
+    <div id="web-scraping" class="collapsible-header" onclick="toggleSection('web-scraping-content', this)">
+        <h2>Extraction de données web avec Python
+            <span class="status-indicator">
+                <span class="status-dot"></span>
+                BeautifulSoup
+            </span>
+        </h2>
+        <span class="collapsible-icon">▼</span>
+    </div>
+    <div id="web-scraping-content" class="collapsible-content">
+        <div class="python-content">
+            <div class="python-explanation">
+                <h3>Extraction de données web avec BeautifulSoup</h3>
+                <p>Dans cette partie, nous allons faire l'extraction de données web.</p>
+                <p>On ne va pas parcourir toutes les fonctionnalités de BeautifulSoup. On va extraire des données depuis la page web mon CV accessible via l'onglet mon CV.</p>
+                
+                <div class="note">
+                    <h5>📝 Note importante</h5>
+                    <p>Pour utiliser BeautifulSoup, il faut d'abord l'installer :</p>
+                    <code>pip install beautifulsoup4</code>
+                    <p>Et importer le module en haut du fichier main.py :</p>
+                    <code>from bs4 import BeautifulSoup</code>
+                </div>
+            </div>
+            
+            <div class="web-scraping-grid">
+                <div class="scraping-example">
+                    <h4>Extraire le titre de la page</h4>
+                    <p>Le code suivant permet d'extraire et d'afficher le titre de la page</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-title')">Copier</button>
+                        </div>
+                        <pre id="code-title"><code class="language-python"># Récupérer et afficher le titre de la page accessible via l'onglet mon cv (mnd.html) 
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data.title.string
+    print(data.title.string)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="scraping-example">
+                    <h4>Extraire tous les titres de niveau h2</h4>
+                    <p>Le code suivant permet d'extraire tous les titres de la page qui sont de niveau h2</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-h2')">Copier</button>
+                        </div>
+                        <pre id="code-h2"><code class="language-python"># permet de récupérer et d'afficher tous les éléments h2 avec find_all
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data_h2 = data.find_all('h2') 
+    for element in data_h2:
+        print(element.string)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="scraping-example">
+                    <h4>Extraire un élément via son id</h4>
+                    <p>Le code suivant permet d'extraire et d'afficher un élément via son id (CSS)</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-id')">Copier</button>
+                        </div>
+                        <pre id="code-id"><code class="language-python"># permet de récupérer l'élément qui a un id=lien1
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    element = data.find(id="lien1").string
+    print(element)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="scraping-example">
+                    <h4>Extraire un ou des élément(s) via sa class</h4>
+                    <p>Le code suivant permet d'extraire et d'afficher tous les éléments de la page via class (CSS)</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-class')">Copier</button>
+                        </div>
+                        <pre id="code-class"><code class="language-python"># permet de récupérer tous les éléments avec la class "title"
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data = data.find_all(class_="title")
+    for element in data:
+        print(element.string)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="scraping-example">
+                    <h4>Extraire les éléments d'une balise</h4>
+                    <p>Le code suivant permet de récupérer et d'afficher tous les éléments de balise &lt;li&gt;</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-li')">Copier</button>
+                        </div>
+                        <pre id="code-li"><code class="language-python">with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    data = data.find_all("li")
+    for e in data:
+        print(e.string)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="scraping-example">
+                    <h4>Extraire les éléments d'une balise en spécifiant une class</h4>
+                    <p>Le code suivant permet de récupérer et d'afficher tous les éléments de balise &lt;li&gt; qui ont la classe de valeur "skill-item"</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">main.py</span>
+                            <button class="copy-btn" onclick="copyCode('code-li-class')">Copier</button>
+                        </div>
+                        <pre id="code-li-class"><code class="language-python"># Recuperer les elements de la balise &lt;li&gt; et qui ont une class="skill-item"
+with open("mnd.html", "r") as file:
+    data = BeautifulSoup(file.read(), 'html.parser')
+    res = data.select("li", class_="skill-item")
+    for element in res:
+        print(element.string)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

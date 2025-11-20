@@ -1,0 +1,109 @@
+<div class="collapsible-section">
+    <div id="projets" class="collapsible-header" onclick="toggleSection('projets-content', this)">
+        <h2>Automatiser la création d'utilisateur 
+            <span class="status-indicator">
+                <span class="status-dot"></span>
+                Ansible
+            </span>
+        </h2>
+        <span class="collapsible-icon">▼</span>
+    </div>
+    <div id="projets-content" class="collapsible-content">
+        <div class="projet-automation">
+            <div class="automation-description">
+                <h3>Playbook Ansible pour la création d'utilisateurs sécurisée</h3>
+                <p>Ce playbook Ansible permet d'automatiser la création d'utilisateurs avec des paramètres de sécurité avancés, gestion des clés SSH et utilisation de variables externalisées pour une meilleure sécurité.</p>
+                
+                <div class="automation-features">
+                    <h4>Fonctionnalités principales :</h4>
+                    <ul>
+                        <li>Création d'utilisateur avec variables externalisées</li>
+                        <li>Génération automatique de clé SSH</li>
+                        <li>Ajout aux groupes appropriés (sudo)</li>
+                        <li>Configuration du shell par défaut</li>
+                        <li>Gestion de l'expiration du compte</li>
+                        <li>Avertissement d'expiration du mot de passe</li>
+                        <li>Utilisation de variables sécurisées</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-title">playbook-create-user.yml</span>
+                    <button class="copy-btn" onclick="copyCode('code-ansible')">Copier</button>
+                </div>
+                <pre id="code-ansible"><code class="language-yaml">---
+- name: Add a new user
+  hosts: all
+  become: yes
+  vars_files:
+    - vars/secrets.yml
+    - group_vars/all.yml
+  tasks:
+    - name: Create a user
+      ansible.builtin.user:
+        name: "{{ new_user }}"
+        password: "{{ new_password }}"
+        groups: sudo
+        shell: /bin/bash
+        create_home: yes
+        expires: 1798851600  # Cette ligne permet de définir une date d'expiration du compte
+        # expires: -1   # Cette ligne commentée permets de désactiver la date d'expiration
+        password_expire_warn: 7  # Avertir 7 jours avant expiration
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa</code></pre>
+            </div>
+            
+            <div class="automation-explanation">
+                <h4>Explication du code :</h4>
+                <div class="explanation-grid">
+                    <div class="explanation-item">
+                        <h5>Variables externalisées</h5>
+                        <p>Utilisation de fichiers de variables séparés (secrets.yml et group_vars/all.yml) pour une meilleure sécurité et modularité.</p>
+                    </div>
+                    <div class="explanation-item">
+                        <h5>Génération de clé SSH</h5>
+                        <p>Création automatique d'une paire de clés SSH RSA 2048 bits pour l'utilisateur.</p>
+                    </div>
+                    <div class="explanation-item">
+                        <h5>Mot de passe haché</h5>
+                        <p>La variable <code>new_password</code> doit contenir un mot de passe déjà haché avec l'algorithme SHA-512.</p>
+                    </div>
+                    <div class="explanation-item">
+                        <h5>Sécurité renforcée</h5>
+                        <p>Expiration du compte configurée et avertissements pour le changement de mot de passe.</p>
+                    </div>
+                </div>
+                
+                <div class="security-note">
+                    <h5>⚠️ Important : Hachage du mot de passe</h5>
+                    <p>Le mot de passe doit être préalablement haché avant d'être utilisé dans le playbook. Voici comment générer un hash SHA-512 :</p>
+                    <div class="code-example">
+                        <code>python3 -c "import crypt; print(crypt.crypt('votre_mot_de_passe', crypt.mksalt(crypt.METHOD_SHA512)))"</code>
+                    </div>
+                    <p>Le résultat doit être stocké dans le fichier <code>vars/secrets.yml</code> :</p>
+                    <div class="code-example">
+                        <code>new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code>
+                    </div>
+                </div>
+                
+                <div class="variables-example">
+                    <h5>Structure des fichiers de variables :</h5>
+                    <div class="variables-grid">
+                        <div class="variable-file">
+                            <h6>group_vars/all.yml</h6>
+                            <pre><code class="language-yaml">new_user: "taph"</code></pre>
+                        </div>
+                        <div class="variable-file">
+                            <h6>vars/secrets.yml</h6>
+                            <pre><code class="language-yaml"># Mot de passe haché SHA-512
+new_password: "$6$rounds=656000$V5bB8L8aRjK9q8eR$..."</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
