@@ -1,3 +1,16 @@
+/* ===== GLOBAL : FORCER L’AFFICHAGE VERTICAL ===== */
+
+.projet-automation,
+.explanation-grid,
+.variables-grid,
+.python-modules,
+.web-scraping-grid {
+    display: grid;
+    grid-template-columns: 1fr;   /* Une seule colonne partout */
+    gap: 2rem;
+}
+
+
 /* === SECTIONS PLIABLES (collapsibles) === */
 .collapsible-section {
     margin: 40px auto;
@@ -515,7 +528,7 @@
     }
     
     .variables-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr ;
     }
     
     .automation-features li {
