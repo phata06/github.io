@@ -503,7 +503,7 @@
 /* === RESPONSIVE POUR LES SECTIONS DEVOPS / PYTHON / COMMANDES === */
 @media (min-width: 1024px) {
     .projet-automation {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
     
     .automation-description {
