@@ -87,8 +87,7 @@
     padding: 1.5rem 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    align-items: flex-start;
+    gap: 2rem;
 }
 
 .automation-description {
@@ -502,11 +501,9 @@
 }
 
 /* === RESPONSIVE POUR LES SECTIONS DEVOPS / PYTHON / COMMANDES === */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .projet-automation {
-        padding: 2rem 0;
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;
     }
     
     .automation-description {
